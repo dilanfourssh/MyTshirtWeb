@@ -233,6 +233,8 @@
     <Content Include="Views\Overview\BuyerRegiser.cshtml" />
     <Content Include="Views\Overview\CompanyRegister.cshtml" />
     <Content Include="Views\Overview\SuccessfullyRegister.cshtml" />
+    <Content Include="Views\Overview\Singleproductpage.cshtml" />
+    <Content Include="Views\Overview\Thankyoupage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

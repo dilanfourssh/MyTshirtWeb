@@ -33,7 +33,23 @@ namespace Tshirt.Controllers
             ViewBag.listcount = tshirtDetails.Count();
             return View();
         }
-       
+        public ActionResult Singleproductpage(int ? imagename)
+        {
+            var Singlepageimagelist = ceylonprintmodelobject.TshirtImages.Where(d => d.id == imagename).FirstOrDefault();
+            ViewBag.singleimage = Singlepageimagelist;
+            return View();
+        }
+        [HttpPost]
+       public ActionResult Singleproductpage(int ? tshirtid, string companymassege,string name,string email,int ? width, int ? hight,string address,string phonenumber)
+        {
+            return RedirectToAction("Thankyoupage", "Overview", new { imagename = tshirtid });
+            
+        }
+        public ActionResult Thankyoupage(int ? imagename)
+        {
+            ViewBag.imagenamedetails = imagename;
+            return View();
+        }
         public ActionResult Customizeorder()
         {
             return View();
