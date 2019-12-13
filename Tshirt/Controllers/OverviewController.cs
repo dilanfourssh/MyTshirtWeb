@@ -54,6 +54,10 @@ namespace Tshirt.Controllers
         {
             return View();
         }
+        public ActionResult Compnypage()
+        {
+            return View();
+        }
         public ActionResult SignIn()
         {
             return View();

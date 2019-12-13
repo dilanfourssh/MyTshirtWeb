@@ -235,6 +235,7 @@
     <Content Include="Views\Overview\SuccessfullyRegister.cshtml" />
     <Content Include="Views\Overview\Singleproductpage.cshtml" />
     <Content Include="Views\Overview\Thankyoupage.cshtml" />
+    <Content Include="Views\Overview\Compnypage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
