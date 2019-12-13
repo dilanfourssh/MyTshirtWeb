@@ -25,35 +25,15 @@ namespace Tshirt.Controllers
         {
             return View();
         }
-        public ActionResult Progamming()
+        public ActionResult Progamming(string pagename)
         {
-            var tshirtDetails = ceylonprintmodelobject.TshirtImages.Where(d => d.category == "Progamming").ToList();
+            
+            var tshirtDetails = ceylonprintmodelobject.TshirtImages.Where(d => d.category == pagename).ToList();
             ViewBag.tshirtdetailspasstheview = tshirtDetails;
             ViewBag.listcount = tshirtDetails.Count();
             return View();
         }
-        public ActionResult Classes()
-        {
-
-            return View();
-        }
-        public ActionResult Couple()
-        {
-            return View();
-        }
-        public ActionResult Family()
-        {
-            return View();
-        }
-        public ActionResult Other()
-        {
-            return View();
-        }
-        public ActionResult Games()
-        {
-           
-            return View();
-        }
+       
         public ActionResult Customizeorder()
         {
             return View();

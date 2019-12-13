@@ -1,10 +1,11 @@
-﻿
+﻿ 
 @{
     Layout = "~/Views/Shared/Header.cshtml";
     //ViewBag.Title = "Index";
     var gettsirtdetails = ViewBag.tshirtdetailspasstheview;
     int listcount = ViewBag.listcount;
     int k = 0;
+    string breakcommand = "Notbreak";
 
 
 
@@ -35,7 +36,7 @@
     <div class="container">
 
       
-        @for (int j = 0; j < 2; j++)
+        @for (int j = 0; j < 5; j++)
         {
             
                 <div class="row">
@@ -57,86 +58,14 @@
                         k++;
                         if(k== listcount)
                         {
+                            breakcommand = "pleasebreak";
                             break;
                         }
                     }
-                    @*<div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/laravel.png" alt="">
-                            </div>
-                            <div class="experts_name text-center">
-                                <h3>Laravel Tshirt</h3>
-                                <span>Tshirt Tag Number - Pro0002</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/android.png" alt="">
-                            </div>
-                            <div class="experts_name text-center">
-                                <h3>Android Tshirt</h3>
-                                <span>Tshirt Tag Number - Pro0003</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/angular.png" alt="">
-                            </div>
-                            <div class="experts_name text-center">
-                                <h3>Angular Tshirt</h3>
-                                <span>Tshirt Tag Number - Pro0004</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/react.png" alt="">
-                            </div>
-                            <div class="experts_name text-center">
-                                <h3>React Tshirt</h3>
-                                <span>Tshirt Tag Number - Pro0005</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/visual.png" alt="">
-                            </div>
-                            <div class="experts_name text-center">
-                                <h3>V S Tshirt</h3>
-                                <span>Tshirt Tag Number - Pro0006</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/python.png" alt="">
-                            </div>
-                            <div class="experts_name text-center">
-                                <h3>Python Tshirt</h3>
-                                <span>Tshirt Tag Number - Pro0007</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/flutter.png" alt="">
-                            </div>
-                            <div class="experts_name text-center">
-                                <h3>Flutter Tshirt</h3>
-                                <span>Tshirt Tag Number - Pro0008</span>
-                            </div>
-                        </div>
-                    </div>*@
+                    @if(breakcommand == "pleasebreak")
+                    {
+                        break;
+                    }
                 </div>
         }
         </div>

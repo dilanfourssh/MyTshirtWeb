@@ -228,11 +228,6 @@
     <Content Include="Views\Overview\Index.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Overview\Progamming.cshtml" />
-    <Content Include="Views\Overview\Classes.cshtml" />
-    <Content Include="Views\Overview\Couple.cshtml" />
-    <Content Include="Views\Overview\Family.cshtml" />
-    <Content Include="Views\Overview\Other.cshtml" />
-    <Content Include="Views\Overview\Games.cshtml" />
     <Content Include="Views\Overview\Customizeorder.cshtml" />
     <Content Include="Views\Overview\SignIn.cshtml" />
     <Content Include="Views\Overview\BuyerRegiser.cshtml" />
