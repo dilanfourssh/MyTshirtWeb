@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Tshirt.Context;
@@ -79,6 +81,30 @@ namespace Tshirt.Controllers
         }
         public ActionResult SuccessfullyRegister()
         {
+            return View();
+        }
+        public ActionResult EmailVerifications(string htmlString)
+        {
+           
+                try
+                {
+                    MailMessage message = new MailMessage();
+                    SmtpClient smtp = new SmtpClient();
+                    message.From = new MailAddress("dilanpiyananda90829@gmail.com");
+                    message.To.Add(new MailAddress("dilan@fourssh.net"));
+                    message.Subject = "Test";
+                    message.IsBodyHtml = true; //to make message body as html  
+                    message.Body = htmlString;
+                    smtp.Port = 587;
+                    smtp.Host = "smtp.gmail.com"; //for gmail host  
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential("dilanpiyananda90829@gmail.com", "902420533vV");
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Send(message);
+                }
+                catch (Exception) { }
+            
             return View();
         }
     }
