@@ -11,20 +11,7 @@
 </head>
 <body>
 
-    <!-- bradcam_area_start  -->
-    <div class="bradcam_area breadcam_bg_2 bradcam_overlay">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3>Sign In & Register</h3>
-                        <p><a href="index.html">Tshirt/</a> Sign In & Register</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- bradcam_area_end  -->
+
     <!-- expert_doctors_area_start -->
     <div class="expert_doctors_area doctor_page">
         <div class="container">
@@ -35,28 +22,31 @@
                             <div class="card card-signin my-5">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Register</h5>
-                                    <form class="form-signin">
-                                        <div class="form-label-group">
-                                            <input type="text" id="inputName" class="form-control" placeholder="Full Name" required >
-                                            <label for="inputName">Full Name</label>
-                                        </div>
-                                        <div class="form-label-group">
-                                            <input type="text" id="inputName1" class="form-control" placeholder="User Name" required >
-                                            <label for="inputName1">User Name</label>
-                                        </div>
-                                        <div class="form-label-group">
-                                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required >
-                                            <label for="inputEmail">Email address</label>
-                                        </div>
-                                        <div class="form-label-group">
-                                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                            <label for="inputPassword">Password</label>
-                                        </div>
-                                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                                    
+                                        @using (Html.BeginForm())
+                                        {
+                                            <div class="form-label-group">
+                                                <input type="text" name="fullName" id="inputName" class="form-control" placeholder="Full Name" required>
+                                                <label for="inputName">Full Name</label>
+                                            </div>
+                                            <div class="form-label-group">
+                                                <input type="text" name="userName" id="inputName1" class="form-control" placeholder="User Name" required>
+                                                <label for="inputName1">User Name</label>
+                                            </div>
+                                            <div class="form-label-group">
+                                                <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required>
+                                                <label for="inputEmail">Email address</label>
+                                            </div>
+                                            <div class="form-label-group">
+                                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                                <label for="inputPassword">Password</label>
+                                            </div>
+                                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                                        }
                                         <hr class="my-4">
-                                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign In</button>
+                                        <a href='@Url.Action("login", "Overview")'><button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign In</button></a>
 
-                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -67,6 +57,11 @@
     </div>
     <!-- expert_doctors_area_end -->
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function submitform(thiss) {
+            $('form').submit();
+        }
+    </script>
 </body>
 </html>

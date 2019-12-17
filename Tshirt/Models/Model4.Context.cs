@@ -13,10 +13,10 @@ namespace Tshirt.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ceylonprintEntities : DbContext
+    public partial class ceylonprintEntities3 : DbContext
     {
-        public ceylonprintEntities()
-            : base("name=ceylonprintEntities")
+        public ceylonprintEntities3()
+            : base("name=ceylonprintEntities3")
         {
         }
     
@@ -25,6 +25,7 @@ namespace Tshirt.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<login> logins { get; set; }
         public virtual DbSet<TshirtImage> TshirtImages { get; set; }
     }
 }

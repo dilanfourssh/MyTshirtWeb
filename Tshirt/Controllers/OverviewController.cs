@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Tshirt.Classes;
 using Tshirt.Context;
 using Tshirt.Models;
 
@@ -13,7 +14,7 @@ namespace Tshirt.Controllers
     
     public class OverviewController : Controller
     {
-        private ceylonprintEntities ceylonprintmodelobject = new ceylonprintEntities();
+        private ceylonprintEntities3 ceylonprintmodelobject = new ceylonprintEntities3();
         // GET: Overview
         private static void Main(string [] args)
         {
@@ -68,7 +69,13 @@ namespace Tshirt.Controllers
         {
             return View();
         }
-       
+        [HttpPost]
+        public ActionResult BuyerRegiser(string fullName,string userName,string inputEmail,string password)
+        {
+            return View();
+        }
+
+
         public ActionResult CompanyRegister()
         {
             return View();
@@ -77,7 +84,7 @@ namespace Tshirt.Controllers
        public ActionResult CompanyRegister(string companymassege,string companyname,string email,string ownerName,string owneridnumber,string tshirt,string tshirtprint,string offsetprint,
                                             string digitalprint,string plastic,string mug,string companylocation,string companyaddress,string agree)
         {
-            return View();
+            return RedirectToAction("SuccessfullyRegister", "Overview");
         }
         public ActionResult SuccessfullyRegister()
         {
@@ -106,6 +113,40 @@ namespace Tshirt.Controllers
                 catch (Exception) { }
             
             return View();
+        }
+
+        public ActionResult login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult login(string name,string password)
+        {
+            var ExistingMember = ceylonprintmodelobject.logins.Where(x => x.loginName == name).FirstOrDefault();
+            if (ExistingMember != null)
+            {
+                string pwd = SHA.GenerateSHA256String(name + password);
+                var user = ceylonprintmodelobject.logins.Where(d => d.loginName == name && d.loginPassword == pwd || d.loginRole == name && d.loginPassword == pwd).FirstOrDefault();
+                Session["Name"] = user.loginName.ToString();
+                Session["companyrole"] = user.loginRole.ToString();
+                if (user != null && user.loginRole == "company")
+                {
+                    return RedirectToAction("Compnypage", "Overview");
+                }
+                else if (user != null && user.loginRole == "buyer")
+                {
+                    return RedirectToAction("Compnypage", "Overview");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
