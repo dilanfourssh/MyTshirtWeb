@@ -13,10 +13,10 @@ namespace Tshirt.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ceylonprintEntities3 : DbContext
+    public partial class ceylonprintEntities4 : DbContext
     {
-        public ceylonprintEntities3()
-            : base("name=ceylonprintEntities3")
+        public ceylonprintEntities4()
+            : base("name=ceylonprintEntities4")
         {
         }
     
@@ -26,6 +26,7 @@ namespace Tshirt.Models
         }
     
         public virtual DbSet<login> logins { get; set; }
+        public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<TshirtImage> TshirtImages { get; set; }
     }
 }

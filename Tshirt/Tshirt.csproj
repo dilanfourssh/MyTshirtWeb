@@ -149,25 +149,28 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\login.cs">
-      <DependentUpon>Model4.tt</DependentUpon>
+      <DependentUpon>Model5.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model4.Context.cs">
+    <Compile Include="Models\Model5.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model4.Context.tt</DependentUpon>
+      <DependentUpon>Model5.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model4.cs">
+    <Compile Include="Models\Model5.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model4.tt</DependentUpon>
+      <DependentUpon>Model5.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model4.Designer.cs">
+    <Compile Include="Models\Model5.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model4.edmx</DependentUpon>
+      <DependentUpon>Model5.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Offer.cs">
+      <DependentUpon>Model5.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TshirtImage.cs">
-      <DependentUpon>Model4.tt</DependentUpon>
+      <DependentUpon>Model5.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -203,15 +206,15 @@
     <Content Include="js\signup.js" />
     <Content Include="css\style.css" />
     <Content Include="js\zoomjava.js" />
-    <Content Include="Models\Model4.Context.tt">
+    <Content Include="Models\Model5.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model4.edmx</DependentUpon>
-      <LastGenOutput>Model4.Context.cs</LastGenOutput>
+      <DependentUpon>Model5.edmx</DependentUpon>
+      <LastGenOutput>Model5.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model4.tt">
+    <Content Include="Models\Model5.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model4.edmx</DependentUpon>
-      <LastGenOutput>Model4.cs</LastGenOutput>
+      <DependentUpon>Model5.edmx</DependentUpon>
+      <LastGenOutput>Model5.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -242,6 +245,9 @@
     <Content Include="Views\Overview\Compnypage.cshtml" />
     <Content Include="Views\Overview\EmailVerifications.cshtml" />
     <Content Include="Views\Overview\login.cshtml" />
+    <Content Include="Views\Overview\SendOfferCategory.cshtml" />
+    <Content Include="Views\Overview\OfferPage.cshtml" />
+    <Content Include="Views\Overview\OfferSinglePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,12 +261,12 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Models\Model4.edmx">
+    <EntityDeploy Include="Models\Model5.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model4.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model5.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model4.edmx.diagram">
-      <DependentUpon>Model4.edmx</DependentUpon>
+    <Content Include="Models\Model5.edmx.diagram">
+      <DependentUpon>Model5.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="js\jquery-3.3.1.slim.min.map" />

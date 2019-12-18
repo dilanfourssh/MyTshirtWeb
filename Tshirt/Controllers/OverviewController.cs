@@ -14,7 +14,7 @@ namespace Tshirt.Controllers
     
     public class OverviewController : Controller
     {
-        private ceylonprintEntities3 ceylonprintmodelobject = new ceylonprintEntities3();
+        private ceylonprintEntities4 ceylonprintmodelobject = new ceylonprintEntities4();
         // GET: Overview
         private static void Main(string [] args)
         {
@@ -147,6 +147,31 @@ namespace Tshirt.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult SendOfferCategory()
+        {
+            if(Session["Name"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Overview");
+            }
+            
+        }
+        public ActionResult OfferPage(string offer)
+        {
+            var tshirtDetails = ceylonprintmodelobject.Offers.Where(d => d.offerName == offer).ToList();
+            ViewBag.tshirtdetailspasstheview = tshirtDetails;
+            ViewBag.listcount = tshirtDetails.Count();
+            return View();
+        }
+        public ActionResult OfferSinglePage(int ? id)
+        {
+            var Singlepageimagelist = ceylonprintmodelobject.Offers.Where(d => d.offerId == id).FirstOrDefault();
+            ViewBag.singleimage = Singlepageimagelist;
+            return View();
         }
     }
 }
