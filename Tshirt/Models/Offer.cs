@@ -22,5 +22,8 @@ namespace Tshirt.Models
         public string offerConfirmWeb { get; set; }
         public string offerDescriptions { get; set; }
         public Nullable<int> offerDelete { get; set; }
+        public Nullable<int> offerAmount { get; set; }
+        public string offerDeleveryAddress { get; set; }
+        public string buyerConfirmOffer { get; set; }
     }
 }

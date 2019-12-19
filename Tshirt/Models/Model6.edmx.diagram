@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b88fd78f276043cf99d3dd5211dc03e3" Name="Diagram1">
+      <Diagram DiagramId="5ae36c458db0489e929ec2dc86a04e54" Name="Diagram1">
         <EntityTypeShape EntityType="ceylonprintModel.login" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ceylonprintModel.Offer" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ceylonprintModel.TshirtImage" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

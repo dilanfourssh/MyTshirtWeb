@@ -14,7 +14,7 @@ namespace Tshirt.Controllers
     
     public class OverviewController : Controller
     {
-        private ceylonprintEntities4 ceylonprintmodelobject = new ceylonprintEntities4();
+        private ceylonprintEntities5 ceylonprintmodelobject = new ceylonprintEntities5();
         // GET: Overview
         private static void Main(string [] args)
         {
@@ -162,7 +162,7 @@ namespace Tshirt.Controllers
         }
         public ActionResult OfferPage(string offer)
         {
-            var tshirtDetails = ceylonprintmodelobject.Offers.Where(d => d.offerName == offer).ToList();
+            var tshirtDetails = ceylonprintmodelobject.Offers.Where(d => d.offerName == offer && d.offerConfirmWeb == "1" && d.buyerConfirmOffer == "no" ).ToList();
             ViewBag.tshirtdetailspasstheview = tshirtDetails;
             ViewBag.listcount = tshirtDetails.Count();
             return View();

@@ -27,6 +27,9 @@
           <Property Name="offerConfirmWeb" Type="varchar" MaxLength="50" />
           <Property Name="offerDescriptions" Type="varchar(max)" />
           <Property Name="offerDelete" Type="int" />
+          <Property Name="offerAmount" Type="int" />
+          <Property Name="offerDeleveryAddress" Type="varchar(max)" />
+          <Property Name="buyerConfirmOffer" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TshirtImage">
           <Key>
@@ -70,6 +73,9 @@
           <Property Name="offerConfirmWeb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="offerDescriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="offerDelete" Type="Int32" />
+          <Property Name="offerAmount" Type="Int32" />
+          <Property Name="offerDeleveryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="buyerConfirmOffer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TshirtImage">
           <Key>
@@ -81,7 +87,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tagNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ceylonprintEntities4" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ceylonprintEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="logins" EntityType="Self.login" />
           <EntitySet Name="Offers" EntityType="Self.Offer" />
           <EntitySet Name="TshirtImages" EntityType="Self.TshirtImage" />
@@ -91,7 +97,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ceylonprintModelStoreContainer" CdmEntityContainer="ceylonprintEntities4">
+        <EntityContainerMapping StorageEntityContainer="ceylonprintModelStoreContainer" CdmEntityContainer="ceylonprintEntities5">
           <EntitySetMapping Name="logins">
             <EntityTypeMapping TypeName="ceylonprintModel.login">
               <MappingFragment StoreEntitySet="login">
@@ -114,6 +120,9 @@
                 <ScalarProperty Name="offerConfirmWeb" ColumnName="offerConfirmWeb" />
                 <ScalarProperty Name="offerDescriptions" ColumnName="offerDescriptions" />
                 <ScalarProperty Name="offerDelete" ColumnName="offerDelete" />
+                <ScalarProperty Name="offerAmount" ColumnName="offerAmount" />
+                <ScalarProperty Name="offerDeleveryAddress" ColumnName="offerDeleveryAddress" />
+                <ScalarProperty Name="buyerConfirmOffer" ColumnName="buyerConfirmOffer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

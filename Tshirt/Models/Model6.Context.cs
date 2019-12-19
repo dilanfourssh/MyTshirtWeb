@@ -13,10 +13,10 @@ namespace Tshirt.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ceylonprintEntities4 : DbContext
+    public partial class ceylonprintEntities5 : DbContext
     {
-        public ceylonprintEntities4()
-            : base("name=ceylonprintEntities4")
+        public ceylonprintEntities5()
+            : base("name=ceylonprintEntities5")
         {
         }
     
