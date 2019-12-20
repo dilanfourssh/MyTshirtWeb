@@ -9,15 +9,14 @@ namespace Tshirt.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+            ContextKey = "Tshirt.Context.tshirtContext";
         }
 
         protected override void Seed(Tshirt.Context.tshirtContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+           
         }
     }
 }

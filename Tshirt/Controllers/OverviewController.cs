@@ -14,7 +14,7 @@ namespace Tshirt.Controllers
     
     public class OverviewController : Controller
     {
-        private ceylonprintEntities5 ceylonprintmodelobject = new ceylonprintEntities5();
+        private tshirtContext db = new tshirtContext();
         // GET: Overview
         private static void Main(string [] args)
         {
@@ -30,15 +30,15 @@ namespace Tshirt.Controllers
         }
         public ActionResult Progamming(string pagename)
         {
-            
-            var tshirtDetails = ceylonprintmodelobject.TshirtImages.Where(d => d.category == pagename).ToList();
+
+            var tshirtDetails = db.tshirtImages.Where(d => d.category == pagename).ToList();
             ViewBag.tshirtdetailspasstheview = tshirtDetails;
             ViewBag.listcount = tshirtDetails.Count();
             return View();
         }
         public ActionResult Singleproductpage(int ? imagename)
         {
-            var Singlepageimagelist = ceylonprintmodelobject.TshirtImages.Where(d => d.id == imagename).FirstOrDefault();
+            var Singlepageimagelist = db.tshirtImages.Where(d => d.id == imagename).FirstOrDefault();
             ViewBag.singleimage = Singlepageimagelist;
             return View();
         }
@@ -63,6 +63,7 @@ namespace Tshirt.Controllers
         }
         public ActionResult SignIn()
         {
+           
             return View();
         }
         public ActionResult BuyerRegiser()
@@ -117,17 +118,18 @@ namespace Tshirt.Controllers
 
         public ActionResult login()
         {
+            var dta = db.ColingOffs.ToList();
             return View();
         }
 
         [HttpPost]
         public ActionResult login(string name,string password)
         {
-            var ExistingMember = ceylonprintmodelobject.logins.Where(x => x.loginName == name).FirstOrDefault();
+            var ExistingMember = db.logins.Where(x => x.loginName == name).FirstOrDefault();
             if (ExistingMember != null)
             {
                 string pwd = SHA.GenerateSHA256String(name + password);
-                var user = ceylonprintmodelobject.logins.Where(d => d.loginName == name && d.loginPassword == pwd || d.loginRole == name && d.loginPassword == pwd).FirstOrDefault();
+                var user = db.logins.Where(d => d.loginName == name && d.loginPassword == pwd || d.loginRole == name && d.loginPassword == pwd).FirstOrDefault();
                 Session["Name"] = user.loginName.ToString();
                 Session["companyrole"] = user.loginRole.ToString();
                 if (user != null && user.loginRole == "company")
@@ -162,14 +164,14 @@ namespace Tshirt.Controllers
         }
         public ActionResult OfferPage(string offer)
         {
-            var tshirtDetails = ceylonprintmodelobject.Offers.Where(d => d.offerName == offer && d.offerConfirmWeb == "1" && d.buyerConfirmOffer == "no" ).ToList();
+            var tshirtDetails = db.offers.Where(d => d.offerName == offer && d.offerConfirmWeb == "1" && d.buyerConfirmOffer == "no").ToList();
             ViewBag.tshirtdetailspasstheview = tshirtDetails;
             ViewBag.listcount = tshirtDetails.Count();
             return View();
         }
         public ActionResult OfferSinglePage(int ? id)
         {
-            var Singlepageimagelist = ceylonprintmodelobject.Offers.Where(d => d.offerId == id).FirstOrDefault();
+            var Singlepageimagelist = db.offers.Where(d => d.offerId == id).FirstOrDefault();
             ViewBag.singleimage = Singlepageimagelist;
             return View();
         }

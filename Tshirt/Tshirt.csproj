@@ -148,30 +148,11 @@
       <DependentUpon>201911130836490_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\login.cs">
-      <DependentUpon>Model6.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model6.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model6.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model6.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model6.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model6.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model6.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Offer.cs">
-      <DependentUpon>Model6.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TshirtImage.cs">
-      <DependentUpon>Model6.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ColingOff.cs" />
+    <Compile Include="Models\keyAttribute.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Offer.cs" />
+    <Compile Include="Models\TshirtImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,16 +187,6 @@
     <Content Include="js\signup.js" />
     <Content Include="css\style.css" />
     <Content Include="js\zoomjava.js" />
-    <Content Include="Models\Model6.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model6.edmx</DependentUpon>
-      <LastGenOutput>Model6.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model6.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model6.edmx</DependentUpon>
-      <LastGenOutput>Model6.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -261,13 +232,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Models\Model6.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model6.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model6.edmx.diagram">
-      <DependentUpon>Model6.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="js\jquery-3.3.1.slim.min.map" />
     <Content Include="js\jquery-3.3.1.min.map" />
