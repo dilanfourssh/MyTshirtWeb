@@ -43,8 +43,23 @@ namespace Tshirt.Controllers
             return View();
         }
         [HttpPost]
-       public ActionResult Singleproductpage(int ? tshirtid, string companymassege,string name,string email,int ? width, int ? hight,string address,string phonenumber)
+       public ActionResult Singleproductpage(int ? tshirtid, string companymassege,string name,string email,string  width, string  hight,string address,string phonenumber)
         {
+            double widthval= Convert.ToDouble(width);
+            double heighval = Convert.ToDouble(hight);
+
+            Tshirtorder tshirtobject = new Tshirtorder();
+            tshirtobject.orderDescription = companymassege;
+            tshirtobject.customerName = name;
+            tshirtobject.email = email;
+            tshirtobject.width = widthval;
+            tshirtobject.hight = heighval;
+            tshirtobject.address = address;
+            tshirtobject.phoneNumber = phonenumber;
+
+            db.tshirtorders.Add(tshirtobject);
+            db.SaveChanges();
+            
             return RedirectToAction("Thankyoupage", "Overview", new { imagename = tshirtid });
             
         }
@@ -73,6 +88,15 @@ namespace Tshirt.Controllers
         [HttpPost]
         public ActionResult BuyerRegiser(string fullName,string userName,string inputEmail,string password)
         {
+            Login logins = new Login();
+            logins.loginName = fullName;
+            logins.loginRole = "buyer";
+            logins.loginEmail = inputEmail;
+            logins.userName = userName;
+            string pwd = SHA.GenerateSHA256String(userName + password);
+            logins.loginPassword = pwd;
+            db.logins.Add(logins);
+            db.SaveChanges();
             return View();
         }
 
@@ -85,6 +109,25 @@ namespace Tshirt.Controllers
        public ActionResult CompanyRegister(string companymassege,string companyname,string email,string ownerName,string owneridnumber,string tshirt,string tshirtprint,string offsetprint,
                                             string digitalprint,string plastic,string mug,string companylocation,string companyaddress,string agree)
         {
+            CompanyRegister companys = new CompanyRegister();
+            companys.companyMassege = companymassege;
+            companys.companyName = companyname;
+            companys.email = email;
+            companys.ownerName = ownerName;
+            companys.ownerIdnumber = owneridnumber;
+            companys.tshirt = tshirt;
+            companys.tshirtprint = tshirtprint;
+            companys.offsetprint = offsetprint;
+            companys.digitalprint = digitalprint;
+            companys.plastic = plastic;
+            companys.mug = mug;
+            companys.companylocation = companylocation;
+            companys.companyaddress = companyaddress;
+            companys.agree = agree;
+
+            db.companyRegisters.Add(companys);
+            db.SaveChanges();
+
             return RedirectToAction("SuccessfullyRegister", "Overview");
         }
         public ActionResult SuccessfullyRegister()
@@ -125,11 +168,11 @@ namespace Tshirt.Controllers
         [HttpPost]
         public ActionResult login(string name,string password)
         {
-            var ExistingMember = db.logins.Where(x => x.loginName == name).FirstOrDefault();
+            var ExistingMember = db.logins.Where(x => x.userName == name).FirstOrDefault();
             if (ExistingMember != null)
             {
                 string pwd = SHA.GenerateSHA256String(name + password);
-                var user = db.logins.Where(d => d.loginName == name && d.loginPassword == pwd || d.loginRole == name && d.loginPassword == pwd).FirstOrDefault();
+                var user = db.logins.Where(d => d.userName == name && d.loginPassword == pwd || d.loginEmail == name && d.loginPassword == pwd).FirstOrDefault();
                 Session["Name"] = user.loginName.ToString();
                 Session["companyrole"] = user.loginRole.ToString();
                 if (user != null && user.loginRole == "company")

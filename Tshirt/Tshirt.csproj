@@ -149,10 +149,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ColingOff.cs" />
+    <Compile Include="Models\CompanyRegister.cs" />
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Offer.cs" />
     <Compile Include="Models\TshirtImage.cs" />
+    <Compile Include="Models\Tshirtorder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

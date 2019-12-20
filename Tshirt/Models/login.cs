@@ -9,6 +9,7 @@ namespace Tshirt.Models
     {
         public int loginId { get; set; }
         public string loginName { get; set; }
+        public string userName { get; set; }
         public string loginRole { get; set; }
         public string loginPassword { get; set; }
         public string loginEmail { get; set; }
