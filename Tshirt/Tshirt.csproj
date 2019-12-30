@@ -221,6 +221,7 @@
     <Content Include="Views\Overview\SendOfferCategory.cshtml" />
     <Content Include="Views\Overview\OfferPage.cshtml" />
     <Content Include="Views\Overview\OfferSinglePage.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

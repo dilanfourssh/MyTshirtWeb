@@ -12,9 +12,10 @@ namespace Tshirt.Models
         public string orderDescription { get; set; }
         public string customerName { get; set; }
         public string email { get; set; }
-        public double width { get; set; }
-        public double hight { get; set; }
+        public string width { get; set; }
+        public string hight { get; set; }
         public string address { get; set; }
         public string phoneNumber { get; set; }
+        public DateTime date { get; set; }
     }
 }

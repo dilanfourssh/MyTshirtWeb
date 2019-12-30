@@ -13,7 +13,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 
-<body>
+<body onload="myFunction()">
 
     <!-- bradcam_area_start  -->
     <div class="bradcam_area breadcam_bg_2 bradcam_overlay">
@@ -74,7 +74,16 @@
 </div>
     }
     <!-- expert_doctors_area_end -->
-
+    
 
 </body>
+<script>
+    function myFunction() {
+        var anchorValue;
+        var url = document.location;
+        var strippedUrl = url.toString().split("#");
+        if (strippedUrl.Length > 1)
+            anchorvalue = strippedUrl[1];
+    }
+</script>
 </html>

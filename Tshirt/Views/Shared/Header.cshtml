@@ -71,16 +71,15 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href='@Url.Action("Index", "Overview")'>home</a></li>
-
                                         <li>
                                             <a href="#">Tshirt <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href='@Url.Action("Progamming", "Overview", new { pagename="progamming"})'>Progamming</a></li>
                                                 <li><a href='@Url.Action("Progamming", "Overview", new { pagename="couple"})'>Couple</a></li>
-                                                <li><a href='@Url.Action("Family", "Overview")'>Family</a></li>
-                                                <li><a href='@Url.Action("Games", "Overview")'>Games</a></li>
-                                                <li><a href='@Url.Action("Classes", "Overview")'>Classes</a></li>
-                                                <li><a href='@Url.Action("Other", "Overview")'>Other</a></li>
+                                                <li><a href='@Url.Action("Family", "Overview", new { pagename="family"})')'>Family</a></li>
+                                                <li><a href='@Url.Action("Games", "Overview", new { pagename="games"})')'>Games</a></li>
+                                                <li><a href='@Url.Action("Classes", "Overview", new { pagename="classes"})')'>Classes</a></li>
+                                                <li><a href='@Url.Action("Other", "Overview", new { pagename="other"})')'>Other</a></li>
                                             </ul>
                                         </li>
                                         <li>

@@ -30,11 +30,12 @@ namespace Tshirt.Controllers
         }
         public ActionResult Progamming(string pagename)
         {
-
-            var tshirtDetails = db.tshirtImages.Where(d => d.category == pagename).ToList();
-            ViewBag.tshirtdetailspasstheview = tshirtDetails;
-            ViewBag.listcount = tshirtDetails.Count();
-            return View();
+            
+                var tshirtDetails = db.tshirtImages.Where(d => d.category == pagename).ToList();
+                ViewBag.tshirtdetailspasstheview = tshirtDetails;
+                ViewBag.listcount = tshirtDetails.Count();
+                return View();
+            
         }
         public ActionResult Singleproductpage(int ? imagename)
         {
@@ -45,17 +46,17 @@ namespace Tshirt.Controllers
         [HttpPost]
        public ActionResult Singleproductpage(int ? tshirtid, string companymassege,string name,string email,string  width, string  hight,string address,string phonenumber)
         {
-            double widthval= Convert.ToDouble(width);
-            double heighval = Convert.ToDouble(hight);
+           
 
             Tshirtorder tshirtobject = new Tshirtorder();
             tshirtobject.orderDescription = companymassege;
             tshirtobject.customerName = name;
             tshirtobject.email = email;
-            tshirtobject.width = widthval;
-            tshirtobject.hight = heighval;
+            tshirtobject.width = width;
+            tshirtobject.hight = hight;
             tshirtobject.address = address;
             tshirtobject.phoneNumber = phonenumber;
+            tshirtobject.date = DateTime.Now;
 
             db.tshirtorders.Add(tshirtobject);
             db.SaveChanges();
@@ -74,8 +75,12 @@ namespace Tshirt.Controllers
         }
         public ActionResult Compnypage()
         {
-            return View();
-        }
+            if (Session["Name"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("login", "Overview");
+    }
         public ActionResult SignIn()
         {
            
@@ -97,13 +102,15 @@ namespace Tshirt.Controllers
             logins.loginPassword = pwd;
             db.logins.Add(logins);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("SuccessfullyRegister", "Overview");
         }
 
 
         public ActionResult CompanyRegister()
         {
-            return View();
+          
+                return View();
+            
         }
         [HttpPost]
        public ActionResult CompanyRegister(string companymassege,string companyname,string email,string ownerName,string owneridnumber,string tshirt,string tshirtprint,string offsetprint,
@@ -207,16 +214,24 @@ namespace Tshirt.Controllers
         }
         public ActionResult OfferPage(string offer)
         {
-            var tshirtDetails = db.offers.Where(d => d.offerName == offer && d.offerConfirmWeb == "1" && d.buyerConfirmOffer == "no").ToList();
-            ViewBag.tshirtdetailspasstheview = tshirtDetails;
-            ViewBag.listcount = tshirtDetails.Count();
-            return View();
+            if (Session["Name"] != null)
+            {
+                var tshirtDetails = db.offers.Where(d => d.offerName == offer && d.offerConfirmWeb == "1" && d.buyerConfirmOffer == "no").ToList();
+                ViewBag.tshirtdetailspasstheview = tshirtDetails;
+                ViewBag.listcount = tshirtDetails.Count();
+                return View();
+            }
+            return RedirectToAction("login", "Overview");
         }
         public ActionResult OfferSinglePage(int ? id)
         {
-            var Singlepageimagelist = db.offers.Where(d => d.offerId == id).FirstOrDefault();
-            ViewBag.singleimage = Singlepageimagelist;
-            return View();
+            if (Session["Name"] != null)
+            {
+                var Singlepageimagelist = db.offers.Where(d => d.offerId == id).FirstOrDefault();
+                ViewBag.singleimage = Singlepageimagelist;
+                return View();
+            }
+            return RedirectToAction("login", "Overview");
         }
     }
 }
