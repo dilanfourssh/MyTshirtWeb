@@ -20,7 +20,7 @@ namespace Tshirt.Controllers
         {
             using (var dbContext=new tshirtContext())
             {
-                int a = 0;
+                
                 dbContext.Database.Initialize(true);
             }
         }
