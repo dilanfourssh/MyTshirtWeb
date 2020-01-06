@@ -76,17 +76,16 @@
                                             <ul class="submenu">
                                                 <li><a href='@Url.Action("Progamming", "Overview", new { pagename="progamming"})'>Progamming</a></li>
                                                 <li><a href='@Url.Action("Progamming", "Overview", new { pagename="couple"})'>Couple</a></li>
-                                                <li><a href='@Url.Action("Family", "Overview", new { pagename="family"})')'>Family</a></li>
-                                                <li><a href='@Url.Action("Games", "Overview", new { pagename="games"})')'>Games</a></li>
-                                                <li><a href='@Url.Action("Classes", "Overview", new { pagename="classes"})')'>Classes</a></li>
-                                                <li><a href='@Url.Action("Other", "Overview", new { pagename="other"})')'>Other</a></li>
+                                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="family"})')'>Family</a></li>
+                                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="games"})')'>Games</a></li>
+                                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="adventure"})')'>Adventure</a></li>
+                                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="other"})')'>Other</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <a href="#">Request Order <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="elements.html">With Design</a></li>
-                                                <li><a href="about.html">Less Design</a></li>
+                                                <li><a href='@Url.Action("RequestOrder", "Overview")'>Request Order</a></li>   
                                             </ul>
                                         </li>
                                         <li>
@@ -174,12 +173,12 @@
                                 Production
                             </h3>
                             <ul>
-                                <li><a href="#">Progamming</a></li>
-                                <li><a href="#">Couple</a></li>
-                                <li><a href="#">Family</a></li>
-                                <li><a href="#">Classes</a></li>
-                                <li><a href="#">Games</a></li>
-                                <li><a href="#">Other</a></li>
+                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="progamming"})'>Progamming</a></li>
+                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="couple"})'>Couple</a></li>
+                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="family"})'>Family</a></li>
+                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="adventure"})'>Adventure</a></li>
+                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="games"})'>Games</a></li>
+                                <li><a href='@Url.Action("Progamming", "Overview", new { pagename="other"})'>Other</a></li>
                             </ul>
 
                         </div>
@@ -193,7 +192,7 @@
                                 <li><a href="#">Poster Design</a></li>
                                 <li><a href="#">Logo Design</a></li>
                                 <li><a href="#">Contact</a></li>
-                                <li><a href="#">Register Company</a></li>
+                                <li><a href='@Url.Action("CompanyRegister", "Overview")'>Register Company</a></li>
                                 <li><a href="#">Rules</a></li>
                             </ul>
                         </div>
@@ -219,10 +218,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            
                         </p>
                     </div>
                 </div>

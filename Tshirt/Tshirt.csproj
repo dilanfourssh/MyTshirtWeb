@@ -148,6 +148,7 @@
       <DependentUpon>201911130836490_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BestProduct.cs" />
     <Compile Include="Models\ColingOff.cs" />
     <Compile Include="Models\CompanyRegister.cs" />
     <Compile Include="Models\keyAttribute.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Views\Overview\OfferPage.cshtml" />
     <Content Include="Views\Overview\OfferSinglePage.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Overview\RequestOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

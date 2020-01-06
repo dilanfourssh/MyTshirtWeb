@@ -2,6 +2,10 @@
 @{
     Layout = "~/Views/Shared/Header.cshtml";
     ViewBag.Title = "Index";
+    var gettsirtdetails = ViewBag.tshirtdetailspasstheview;
+    int listcount = ViewBag.listcount;
+    int k = 0;
+    string breakcommand = "Notbreak";
 
 }
 <!doctype html>
@@ -25,7 +29,7 @@
                                     You can get Our Tshirt Or You Can Give Your Order Us<br> We are
                                     Complete Your Order Few Days and We can Delevery The Order
                                 </p>
-                                <a href="#" class="boxed-btn3">Request Your Order</a>
+                                <a href='@Url.Action("RequestOrder", "Overview")' class="boxed-btn3">Request Your Order</a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +68,7 @@
                                         You can get Our Tshirt Or You Can Give Your Order Us<br> We are
                                         Complete Your Order Few Days and We can Delevery The Order
                                     </p>
-                                    <a href="#" class="boxed-btn3">Request Your Order</a>
+                                    <a href='@Url.Action("RequestOrder", "Overview")' class="boxed-btn3">Request Your Order</a>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +88,7 @@
                             <img src="~/img/about/1.png" alt="">
                         </div>
                         <div class="thumb_2">
-                            <img src="~/img/about/2.png" alt="">
+                            <img src="~/img/about/.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -107,7 +111,7 @@
                             <li> <i class="flaticon-right"></i> Confirm The Order</li>
                             <li> <i class="flaticon-right"></i> You Satisfy your Budger Request are Accept</li>
                         </ul>
-                        <a href="#" class="boxed-btn3-white-2">Order Now</a>
+                        <a href='@Url.Action("RequestOrder", "Overview")' class="boxed-btn3-white-2">Order Now</a>
                     </div>
                 </div>
             </div>
@@ -129,8 +133,8 @@
                 </div>
             </div>
             <div class="row">
-                
-                <div class="col-xl-4 col-md-6 col-lg-4" >
+
+                <div class="col-xl-4 col-md-6 col-lg-4">
                     <div class="single_department">
                         <div class="department_thumb">
                             <img src="~/img/department/1.png" alt="">
@@ -142,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-              
+
                 <div class="col-xl-4 col-md-6 col-lg-4">
                     <div class="single_department">
                         <div class="department_thumb">
@@ -309,6 +313,69 @@
         </div>
     </div>
     <!-- business_expert_area_end  -->
+    <!-- offers_area_start -->
+    <div class="our_department_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title text-center mb-55">
+                        <h3>Famus Production Of the Year</h3>
+                        <p>
+                            Website Best Seller Design<br>
+                            This Product Is This Year Best Production on Ceylon Print Team
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                @{
+                    //numberoftotalcircle = 2;
+                    <div class="expert_doctors_area doctor_page">
+                        <div class="container">
+
+
+                            @for (int j = 0; j < 5; j++)
+                            {
+
+                                <div class="row">
+                                    @for (int i = 0; i < 4; i++)
+                                    {
+
+                                        int imageid = @gettsirtdetails[@k].id;
+                                        <div class="col-md-6 col-lg-3">
+                                            <div class="single_expert mb-40">
+                                                <div class="expert_thumb">
+                                                    <img src="~/img/experts/@gettsirtdetails[@k].fileName" alt="">
+                                                </div>
+                                                <a href='@Url.Action("Singleproductpage", "Overview", new { imagename=@imageid})'>
+                                                    <div class="experts_name text-center">
+                                                        <h3>@gettsirtdetails[@k].Name</h3>
+                                                        <span>@gettsirtdetails[@k].Name</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        k++;
+                                        if (k == listcount)
+                                        {
+                                            breakcommand = "pleasebreak";
+                                            break;
+                                        }
+                                    }
+                                    @if (breakcommand == "pleasebreak")
+                                    {
+                                        break;
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- offers_area_end -->
     <!-- expert_doctors_area_start -->
     <div class="expert_doctors_area">
         <div class="container">
@@ -393,7 +460,7 @@
                             <p>Click the button get Custom Order</p>
                         </div>
                         <div class="info_button">
-                            <a href="#" class="boxed-btn3-white">+9471 21 25 166</a>
+                            <a href='@Url.Action("RequestOrder", "Overview")' class="boxed-btn3-white">+9471 21 25 166</a>
                         </div>
                     </div>
                 </div>
@@ -404,7 +471,7 @@
                             <p>Any Other Design order Ex: Logo, Lette Head, etc ...</p>
                         </div>
                         <div class="info_button">
-                            <a href="#" class="boxed-btn3-white">Request Design</a>
+                            <a href='@Url.Action("RequestOrder", "Overview")' class="boxed-btn3-white">Request Design</a>
                         </div>
                     </div>
                 </div>

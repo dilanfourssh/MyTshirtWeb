@@ -26,6 +26,10 @@ namespace Tshirt.Controllers
         }
         public ActionResult Index()
         {
+            var tshirtDetails = db.bestProducts.ToList();
+            ViewBag.tshirtdetailspasstheview = tshirtDetails;
+            ViewBag.listcount = tshirtDetails.Count();
+            //return View();
             return View();
         }
         public ActionResult Progamming(string pagename)
@@ -232,6 +236,10 @@ namespace Tshirt.Controllers
                 return View();
             }
             return RedirectToAction("login", "Overview");
+        }
+        public ActionResult RequestOrder()
+        {
+            return View();
         }
     }
 }
