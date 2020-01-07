@@ -2,6 +2,9 @@
     Layout = "~/Views/Shared/Header.cshtml";
     var singleimages = ViewBag.singleimage;
 }
+<head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
 <body>
    
     <!--================Blog Area =================-->
@@ -36,61 +39,62 @@
                         </div>
 
 
-                        <div class="comment-form">
-                            <h4>You Can Order Now Tshirt </h4>
-                            @using (Html.BeginForm())
-                            {
+                    <div class="comment-form">
+                        <h4>You Can Order Now Tshirt </h4>
+                        @using (Html.BeginForm())
+                        {
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control" name="tshirtid" id="name" type="hidden" placeholder="Name" value="@singleimages.id">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control w-100" name="companymassege" id="comment" cols="30" rows="9"
-                                                      placeholder="Enter Small Description How Is Want Your Tsirt"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control" name="width" id="name" type="text" placeholder="Width T shirt">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control" name="hight" id="name" type="text" placeholder="Hight Your T shirt">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control w-100" name="address" id="comment" cols="30" rows="9"
-                                                      placeholder="Delevery Address"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <input class="form-control" name="phonenumber" id="website" type="text" placeholder="Phone Number">
-                                        </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="tshirtid" id="name" type="hidden" placeholder="Name" value="@singleimages.id">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Your Order</button>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control w-100" name="companymassege" id="comment" cols="30" rows="9"
+                                                  placeholder="Enter Small Description How Is Want Your Tsirt"></textarea>
+                                    </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="width" id="name" type="text" placeholder="Width T shirt">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="hight" id="name" type="text" placeholder="Hight Your T shirt">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control w-100" name="address" id="comment" cols="30" rows="9"
+                                                  placeholder="Delevery Address"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="phonenumber" id="website" type="text" placeholder="Phone Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="g-recaptcha" data-sitekey="6Lf7u8wUAAAAAFqgd3KzZZVIdJ3ICYpARBVL7SOt"></div>
+                            <div class="form-group">
+                                <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Your Order</button>
+                            </div>
 
-                            }
-                        </div>
+                        }
+                    </div>
                     </div>
                     
                 <div class="col-lg-4">

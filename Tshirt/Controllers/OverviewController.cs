@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -15,6 +17,8 @@ namespace Tshirt.Controllers
     public class OverviewController : Controller
     {
         private tshirtContext db = new tshirtContext();
+        private object postedFile;
+
         // GET: Overview
         private static void Main(string [] args)
         {
@@ -239,6 +243,38 @@ namespace Tshirt.Controllers
         }
         public ActionResult RequestOrder()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RequestOrder(string name,string title,string designdate,string deleverydate, string deleveryaddress,string printcatogory,string printcolor,string discription,string designprice,string printprice, HttpPostedFileBase uploadsample)
+        {
+            RequestOrder order = new RequestOrder();
+            string path = Server.MapPath("~/img/orderimage/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            
+            uploadsample.SaveAs(path + Path.GetFileName(uploadsample.FileName));
+            ViewBag.Message = "File uploaded successfully.";
+            order.name = name;
+            order.title = title;
+            order.designdate = designdate;
+            order.deleverydate = deleverydate;
+            order.deleveryaddress = deleveryaddress;
+            order.printcatogory = printcatogory;
+            order.printcolor = printcolor;
+            order.discription = discription;
+            order.designprice = designprice;
+            order.printprice = printprice;
+            order.uploadsample = uploadsample.FileName;
+            order.adminconfirm = 0;
+
+            db.requestOrders.Add(order);
+            db.SaveChanges();
+
+
             return View();
         }
     }

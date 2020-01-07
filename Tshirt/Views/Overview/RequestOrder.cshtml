@@ -26,7 +26,9 @@
     </div>
     <!-- bradcam_area_end  -->
     <!-- expert_doctors_area_start -->
-
+    <script>
+        $("input").removeAttr("required");
+    </script>
     <div class="whole-wrap">
         <div class="container box_1170">
             
@@ -38,171 +40,173 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
                         <h3 class="mb-30">Send Your Order </h3>
-                        <form action="#">
+                        @using (Html.BeginForm("RequestOrder", "Overview", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
                             <div class="mt-10">
                                 <input type="text" name="name" placeholder="Name"
                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required
                                        class="single-input">
                             </div>
                             <div class="mt-10">
-                                <input type="text" name="last_name" placeholder="Design Catogory Title"
+                                <input type="text" name="title" placeholder="Design Catogory Title"
                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Design Catogory Title'" required
                                        class="single-input">
                             </div>
                             <div class="mt-10">
                                 <input type="text" name="designdate" placeholder="Design Own Date"
-                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Design Own Date'" required
+                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Design Own Date (ex;- Month / Date)'" required
                                        class="single-input">
                             </div>
                             <div class="mt-10">
                                 <input type="text" name="deleverydate" placeholder="If Print Your Design Fill Delevery Own Date"
-                                       onfocus="this.placeholder = ''"  onblur="this.placeholder = 'If Print Your Design Fill Delevery Own Date'" required
+                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'If Print Your Design Fill Delevery Own Date (ex;- Month / Date)'" notrequired
                                        class="single-input">
                             </div>
 
                             <div class="input-group-icon mt-10">
                                 <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
-                                <input type="text" name="deleveryaddress" placeholder="if Delevery Please Fill Delevery Address" onfocus="this.placeholder = ''"
-                                       onblur="this.placeholder = 'if Delevery Please Fill Delevery Address'" required class="single-input">
+                                <input type="text" name="deleveryaddress" placeholder="if Delevery Please Fill Delevery Address" onfocus="this.placeholder = ''" notrequired
+                                       onblur="this.placeholder = 'if Delevery Please Fill Delevery Address'" class="single-input">
                             </div>
                             <div class="input-group-icon mt-10">
                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                 <div class="form-select" id="default-select" ">
-                                    <select>
+                                    <select name="printcatogory">
                                         <option value=" 1">Select print This Catogory</option>
-                                        <option value="1">Tshirt</option>
-                                        <option value="1">Banner</option>
-                                        <option value="1">Poster</option>
-                                        <option value="1">Leflert</option>
-                                        <option value="1">calendar</option>
-                                        <option value="1">Bookmark</option>
-                                        <option value="1">Sticker</option>
-                                        <option value="1">other</option>
+                                        <option value="tshirt">Tshirt</option>
+                                        <option value="banner">Banner</option>
+                                        <option value="poster">Poster</option>
+                                        <option value="leflert">Leflert</option>
+                                        <option value="calendar">calendar</option>
+                                        <option value="bookmark">Bookmark</option>
+                                        <option value="stricker">Sticker</option>
+                                        <option value="other">other</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="input-group-icon mt-10">
                                 <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
                                 <div class="form-select" id="default-select" ">
-                                    <select>
+                                    <select name="printcolor">
                                         <option value=" 1">Color Catogory</option>
-                                        <option value="1">One Color</option>
-                                        <option value="1">Two Color</option>
-                                        <option value="1">Four Color</option>
-                                        <option value="1">Any Color</option>
+                                        <option value="one">One Color</option>
+                                        <option value="two">Two Color</option>
+                                        <option value="four">Four Color</option>
+                                        <option value="any">Any Color</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="mt-10">
-                                <textarea class="single-textarea" placeholder="Your Description  sizes Any Requirment " onfocus="this.placeholder = ''"
+                                <textarea name="discription" class="single-textarea" placeholder="Your Description  sizes Any Requirment " onfocus="this.placeholder = ''"
                                           onblur="this.placeholder = 'Your Description  sizes Any Requirment '" required></textarea>
                             </div>
 
                             <div class="mt-10">
-                                <input type="text" name="first_name" placeholder="Request Your Design Price"
+                                <input type="text" name="designprice" placeholder="Request Your Design Price"
                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Request Your Design Price'" required
                                        class="single-input-primary">
                             </div>
                             <div class="mt-10">
-                                <input type="text" name="first_name" placeholder="if you Print design fill Request Your Print Price"
-                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'if you Print design fill Request Your Print Price'" required
+                                <input type="text" name="printprice" placeholder="if you Print design fill Request Your Print Price"
+                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'if you Print design fill Request Your Print Price'" notrequred
                                        class="single-input-primary">
                             </div>
                             <div class="mt-10">
                                 <p>Upload Your Images Or Any Other Requirment image</p>
                             </div>
                             <div class="mt-10">
-                                <input type="file" name="first_name" placeholder="Accent color"
-                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Accent color'" required
+                                <input type="file" name="uploadsample" placeholder="Accent color"
+                                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Accent color'" notrequred
                                        class="single-input-accent">
                             </div>
                             <div class="mt-10">
                                 <input type="submit" name="submit" placeholder="submit"
                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Secondary color'"
-                                       required class="single-input-secondary">
+                                       required class="genric-btn primary-border e-large">
                             </div>
-                        </form>
+                        }
+
+                        </div>
+                        <div class="col-lg-3 col-md-4 mt-sm-30">
+                            <div class="single-element-widget">
+                                <h3 class="mb-30">Color Catogory</h3>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>01. One Color</p>
+                                    <div class="primary-switch">
+                                        <input type="checkbox" id="default-switch">
+                                        <label for="default-switch"></label>
+                                    </div>
+                                </div>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>02. Two Color</p>
+                                    <div class="primary-switch">
+                                        <input type="checkbox" id="primary-switch" checked>
+                                        <label for="primary-switch"></label>
+                                    </div>
+                                </div>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>03. Four Color</p>
+                                    <div class="confirm-switch">
+                                        <input type="checkbox" id="confirm-switch" checked>
+                                        <label for="confirm-switch"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-element-widget mt-30">
+                                <h3 class="mb-30">Language</h3>
+                                <div class="default-select" id="default-select" ">
+                                    <select>
+                                        <option value=" 1">English</option>
+                                        <option value="1">Sinhala</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="single-element-widget mt-30">
+                                <h3 class="mb-30">Checkboxes</h3>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>01. Design</p>
+                                    <div class="primary-checkbox">
+                                        <input type="checkbox" id="default-checkbox">
+                                        <label for="default-checkbox"></label>
+                                    </div>
+                                </div>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>02. Delevery</p>
+                                    <div class="primary-checkbox">
+                                        <input type="checkbox" id="primary-checkbox" checked>
+                                        <label for="primary-checkbox"></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="single-element-widget mt-30">
+                                <h3 class="mb-30">Radios</h3>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>01. Into Colombo</p>
+                                    <div class="primary-radio">
+                                        <input type="checkbox" id="default-radio">
+                                        <label for="default-radio"></label>
+                                    </div>
+                                </div>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>02. Near The Colombo</p>
+                                    <div class="primary-radio">
+                                        <input type="checkbox" id="primary-radio" checked>
+                                        <label for="primary-radio"></label>
+                                    </div>
+                                </div>
+                                <div class="switch-wrap d-flex justify-content-between">
+                                    <p>03. Out Of Colombo</p>
+                                    <div class="confirm-radio">
+                                        <input type="checkbox" id="confirm-radio" checked>
+                                        <label for="confirm-radio"></label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 mt-sm-30">
-                        <div class="single-element-widget">
-                            <h3 class="mb-30">Color Catogory</h3>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>01. One Color</p>
-                                <div class="primary-switch">
-                                    <input type="checkbox" id="default-switch">
-                                    <label for="default-switch"></label>
-                                </div>
-                            </div>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>02. Two Color</p>
-                                <div class="primary-switch">
-                                    <input type="checkbox" id="primary-switch" checked>
-                                    <label for="primary-switch"></label>
-                                </div>
-                            </div>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>03. Four Color</p>
-                                <div class="confirm-switch">
-                                    <input type="checkbox" id="confirm-switch" checked>
-                                    <label for="confirm-switch"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-element-widget mt-30">
-                            <h3 class="mb-30">Language</h3>
-                            <div class="default-select" id="default-select" ">
-                                <select>
-                                    <option value=" 1">English</option>
-                                    <option value="1">Sinhala</option>
-                                    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="single-element-widget mt-30">
-                            <h3 class="mb-30">Checkboxes</h3>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>01. Design</p>
-                                <div class="primary-checkbox">
-                                    <input type="checkbox" id="default-checkbox">
-                                    <label for="default-checkbox"></label>
-                                </div>
-                            </div>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>02. Delevery</p>
-                                <div class="primary-checkbox">
-                                    <input type="checkbox" id="primary-checkbox" checked>
-                                    <label for="primary-checkbox"></label>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="single-element-widget mt-30">
-                            <h3 class="mb-30">Radios</h3>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>01. Into Colombo</p>
-                                <div class="primary-radio">
-                                    <input type="checkbox" id="default-radio">
-                                    <label for="default-radio"></label>
-                                </div>
-                            </div>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>02. Near The Colombo</p>
-                                <div class="primary-radio">
-                                    <input type="checkbox" id="primary-radio" checked>
-                                    <label for="primary-radio"></label>
-                                </div>
-                            </div>
-                            <div class="switch-wrap d-flex justify-content-between">
-                                <p>03. Out Of Colombo</p>
-                                <div class="confirm-radio">
-                                    <input type="checkbox" id="confirm-radio" checked>
-                                    <label for="confirm-radio"></label>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -154,6 +154,7 @@
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Offer.cs" />
+    <Compile Include="Models\RequestOrder.cs" />
     <Compile Include="Models\TshirtImage.cs" />
     <Compile Include="Models\Tshirtorder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

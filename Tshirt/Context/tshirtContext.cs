@@ -25,6 +25,8 @@ namespace Tshirt.Context
         public DbSet<Tshirtorder> tshirtorders { get; set; }
         public DbSet<CompanyRegister> companyRegisters { get; set; }
         public DbSet<BestProduct> bestProducts { get; set; }
+        public DbSet<RequestOrder> requestOrders { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //base.OnModelCreating(modelBuilder);
