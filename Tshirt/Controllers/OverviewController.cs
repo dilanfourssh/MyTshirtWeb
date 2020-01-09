@@ -143,8 +143,65 @@ namespace Tshirt.Controllers
             db.companyRegisters.Add(companys);
             db.SaveChanges();
 
-            return RedirectToAction("SuccessfullyRegister", "Overview");
+            return RedirectToAction("SentMail", "Overview",new {name = companyname });
         }
+
+        public ActionResult SentMail(string name)
+        {
+            string body = this.PopulateBody(name);
+            Email.SendMail("req1", "dilanpiyananda90829@gmail.com", "confirm Your Email", body);
+            return RedirectToAction("CompanyRegister", "Overview");
+        }
+        private string PopulateBody(string userName)
+        {
+            string date = DateTime.Now.ToString();
+            int y = 0;
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/Views/Overview/templateemail.cshtml")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{date}", date);
+            body = body.Replace("{Name}", userName);
+            //body = body.Replace("{Title}", title);
+            //body = body.Replace("{Url}", url);
+           // body = body.Replace("{Description}", description);
+            return body;
+            
+        }
+        public ActionResult ss()
+        {
+            try
+            {
+                using (System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage())
+                {
+                    message.To.Add("dilanpiyananda90829@gmail.com");
+                    message.Subject = "New Ticket Generated";
+                    message.From = new System.Net.Mail.MailAddress("confirm@ceylonprint.com");
+                    message.IsBodyHtml = true;
+                    message.Body = "This is message body";
+                    System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
+                    smtp.Host = "smtp.ceylonprint.com";
+                    smtp.Port = 25;
+                    smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new System.Net.NetworkCredential("confirm@ceylonprint.com", "902420533vV");
+                    smtp.Send(message);
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return View();
+        }
+        public ActionResult templateemail()
+        {
+            return View();
+        }
+
         public ActionResult SuccessfullyRegister()
         {
             return View();

@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\BackEndValidations.cs" />
+    <Compile Include="Classes\Email.cs" />
     <Compile Include="Classes\SHA.cs" />
     <Compile Include="Context\tshirtContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -225,6 +226,7 @@
     <Content Include="Views\Overview\OfferSinglePage.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Overview\RequestOrder.cshtml" />
+    <Content Include="Views\Overview\templateemail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
