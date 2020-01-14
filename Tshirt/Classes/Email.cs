@@ -122,7 +122,7 @@ public static void SendMail(string checkmail, string resever, string subject, st
        
         Host = ConfigurationManager.AppSettings["host"].ToString(),
         Port = Int32.Parse(ConfigurationManager.AppSettings["Port"]),
-        EnableSsl = false,
+        EnableSsl = true,
         DeliveryMethod = SmtpDeliveryMethod.Network,
         UseDefaultCredentials = false,
         Credentials = new NetworkCredential(senderemail.Address, password),

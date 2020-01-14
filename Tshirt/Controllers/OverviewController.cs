@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Tshirt.Classes;
@@ -171,29 +172,35 @@ namespace Tshirt.Controllers
         }
         public ActionResult ss()
         {
+
+
+
             try
             {
-                using (System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage())
-                {
-                    message.To.Add("dilanpiyananda90829@gmail.com");
-                    message.Subject = "New Ticket Generated";
-                    message.From = new System.Net.Mail.MailAddress("confirm@ceylonprint.com");
-                    message.IsBodyHtml = true;
-                    message.Body = "This is message body";
-                    System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
-                    smtp.Host = "smtp.ceylonprint.com";
-                    smtp.Port = 25;
-                    smtp.EnableSsl = true;
-                    smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new System.Net.NetworkCredential("confirm@ceylonprint.com", "902420533vV");
-                    smtp.Send(message);
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("ceylonprint.com");
 
-                }
+                mail.From = new MailAddress("confirm@ceylonprint.com");
+                mail.To.Add("dilanpiyananda90829@gmail.com");
+                mail.Subject = "Test Mail - 1";
+
+                mail.IsBodyHtml = true;
+                string htmlBody;
+
+                htmlBody = "Write some HTML code here";
+
+                mail.Body = htmlBody;
+
+                SmtpServer.Port = 25;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("confirm@ceylonprint.com", "902420533vV");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                //MessageBox.Show("mail Send");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Console.WriteLine(ex.ToString());
             }
             return View();
         }
