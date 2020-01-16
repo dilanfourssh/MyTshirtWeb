@@ -22,6 +22,7 @@ namespace Tshirt.Models
         public string companylocation { get; set; }
         public string companyaddress { get; set; }
         public string agree { get; set; }
-       
+        public int otpcode { get; set; }
+
     }
 }

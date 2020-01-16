@@ -141,69 +141,65 @@ namespace Tshirt.Controllers
             companys.companyaddress = companyaddress;
             companys.agree = agree;
 
+            Random random = new Random();
+            int randomNumber = random.Next(0, 1000000);
+            companys.otpcode = randomNumber;
+
             db.companyRegisters.Add(companys);
             db.SaveChanges();
 
-            return RedirectToAction("SentMail", "Overview",new {name = companyname });
+            return RedirectToAction("SentMail", "Overview",new {name = companyname,otpcode=randomNumber,id=companys.companyRegisterId,emails=email });
         }
 
-        public ActionResult SentMail(string name)
+        public ActionResult SentMail(string name,int otpcode,int id, string emails)
         {
-            string body = this.PopulateBody(name);
-            Email.SendMail("req1", "dilanpiyananda90829@gmail.com", "confirm Your Email", body);
-            return RedirectToAction("CompanyRegister", "Overview");
+            string body = this.PopulateBody(name,otpcode);
+            Email.SendMail("req1", emails, "confirm Your Email", body);
+            return RedirectToAction("confirmationRegister", "Overview",new {ids = id });
         }
-        private string PopulateBody(string userName)
+        private string PopulateBody(string userName,int otpcode)
         {
             string date = DateTime.Now.ToString();
             int y = 0;
             string body = string.Empty;
+            string otp = otpcode.ToString();
+
             using (StreamReader reader = new StreamReader(Server.MapPath("~/Views/Overview/templateemail.cshtml")))
             {
                 body = reader.ReadToEnd();
             }
             body = body.Replace("{date}", date);
-            body = body.Replace("{Name}", userName);
-            //body = body.Replace("{Title}", title);
-            //body = body.Replace("{Url}", url);
-           // body = body.Replace("{Description}", description);
+            body = body.Replace("{otpcode}", otp);  
             return body;
             
         }
-        public ActionResult ss()
+        public ActionResult confirmationRegister(int ids)
         {
-
-
-
-            try
+            ViewBag.ids = ids;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult confirmationRegister(string confirmation,int idvalue,string username, string password)
+        {
+            var register = db.companyRegisters.Where(d => d.companyRegisterId == idvalue).FirstOrDefault();
+            string otps = register.otpcode.ToString();
+            if(otps == confirmation)
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("ceylonprint.com");
+                Login logindetails = new Login();
+                logindetails.loginName = register.ownerName;
+                logindetails.userName = username;
+                logindetails.loginRole = "company";
+                string pwd = SHA.GenerateSHA256String(username + password);
+                logindetails.loginPassword = pwd;
+                logindetails.companyRegisterLoginId = idvalue;
 
-                mail.From = new MailAddress("confirm@ceylonprint.com");
-                mail.To.Add("dilanpiyananda90829@gmail.com");
-                mail.Subject = "Test Mail - 1";
-
-                mail.IsBodyHtml = true;
-                string htmlBody;
-
-                htmlBody = "Write some HTML code here";
-
-                mail.Body = htmlBody;
-
-                SmtpServer.Port = 25;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("confirm@ceylonprint.com", "902420533vV");
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
-                //MessageBox.Show("mail Send");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
+                db.logins.Add(logindetails);
+                db.SaveChanges();
+                return RedirectToAction("SuccessfullyRegister", "Overview");
             }
             return View();
         }
+
         public ActionResult templateemail()
         {
             return View();

@@ -13,6 +13,7 @@ namespace Tshirt.Models
         public string loginRole { get; set; }
         public string loginPassword { get; set; }
         public string loginEmail { get; set; }
+        public int companyRegisterLoginId { get; set; }
 
     }
 }

@@ -104,42 +104,42 @@ namespace Tshirt.Classes
                     smtp.Send(message);
                 }
 }
-public static void SendMail(string checkmail, string resever, string subject, string messaage)
-{
-    var senderemail = new MailAddress(ConfigurationManager.AppSettings["eemail"].ToString(), "Ceylonprint Confirmation");
-    var receiveremail = new MailAddress(resever, "User");
-    var password = ConfigurationManager.AppSettings["epwd"].ToString();
+        public static void SendMail(string checkmail, string resever, string subject, string messaage)
+        {
+            var senderemail = new MailAddress(ConfigurationManager.AppSettings["eemail"].ToString(), "Ceylonprint Confirmation");
+            var receiveremail = new MailAddress(resever, "User");
+            var password = ConfigurationManager.AppSettings["epwd"].ToString();
 
 
 
-    var sub = subject;
-    //var body = "MemberShip No = " + tempGroupData.membershipNo.ToString()  +  ", Email = " + tempGroupData.email.ToString() + ", BC No = " + tempGroupData.bcNo.ToString();
+            var sub = subject;
+            //var body = "MemberShip No = " + tempGroupData.membershipNo.ToString()  +  ", Email = " + tempGroupData.email.ToString() + ", BC No = " + tempGroupData.bcNo.ToString();
 
-    string body = messaage;
+            string body = messaage;
 
-    var smtp = new SmtpClient
-    {
+            var smtp = new SmtpClient
+            {
        
-        Host = ConfigurationManager.AppSettings["host"].ToString(),
-        Port = Int32.Parse(ConfigurationManager.AppSettings["Port"]),
-        EnableSsl = true,
-        DeliveryMethod = SmtpDeliveryMethod.Network,
-        UseDefaultCredentials = false,
-        Credentials = new NetworkCredential(senderemail.Address, password),
+                Host = ConfigurationManager.AppSettings["host"].ToString(),
+                Port = Int32.Parse(ConfigurationManager.AppSettings["Port"]),
+                EnableSsl = false,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = true,
+                Credentials = new NetworkCredential(senderemail.Address, password),
         
-        };
+                };
 
-    using (var message = new MailMessage(senderemail, receiveremail)
-    {
-        Subject = sub,
-        Body = body,
-        IsBodyHtml = true
+            using (var message = new MailMessage(senderemail, receiveremail)
+            {
+                Subject = sub,
+                Body = body,
+                IsBodyHtml = true
 
-    }
-    )
-    {
-        smtp.Send(message);
-    }
-}
-    }
+            }
+            )
+            {
+                smtp.Send(message);
+            }
+        }
+            }
 }
