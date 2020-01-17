@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/Header.cshtml";
     //ViewBag.Title = "Index";
-
+    string name = ViewBag.name;
 }
 <!doctype html>
 
@@ -18,27 +18,24 @@
                 <div class="col-xl-12">
                     <div class="bradcam_text">
                         <h3>Register Your Company</h3>
-                        <p><a href="index.html">Tshirt/</a> Company Register</p>
+                        <p><a href="index.html">Tshirt/</a> Company Register Or Member Register</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- bradcam_area_end  -->
-    <!-- expert_doctors_area_start -->
-    <div class="expert_doctors_area doctor_page">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>  Successfully Register Your Company Or User  </h2> <br />
-                </div>
-                <div class="col-md-12">
-                    <h5>  please click login button and login your account  </h5>
-                </div>
-                </div>
-            </div>
+    <div class="jumbotron text-center">
+        <h1 class="display-3">Thank You!</h1>
+        <p class="lead"><strong>@name </strong> Your Registration is Success fully click login button and login your account</p>
+        <hr>
+        <p>
+            Having trouble? <a href="">+9471 21 25 166</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-sm" href='@Url.Action("Index", "Overview")' role="button">Continue to our homepage</a>
+        </p>
     </div>
-
 
 </body>
 </html>

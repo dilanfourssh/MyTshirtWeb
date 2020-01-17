@@ -19,6 +19,7 @@ namespace Tshirt.Models
         public string designprice { get; set; }
         public string printprice { get; set; }
         public string uploadsample { get; set; }
+        public string uploadoriginal { get; set; }
         public int adminconfirm { get; set; }
     }
 }

@@ -182,8 +182,8 @@ namespace Tshirt.Controllers
         public ActionResult confirmationRegister(string confirmation,int idvalue,string username, string password)
         {
             var register = db.companyRegisters.Where(d => d.companyRegisterId == idvalue).FirstOrDefault();
-            string otps = register.otpcode.ToString();
-            if(otps == confirmation)
+            int comfirm = Convert.ToInt32(confirmation);
+            if(register.otpcode == comfirm)
             {
                 Login logindetails = new Login();
                 logindetails.loginName = register.ownerName;
@@ -195,7 +195,7 @@ namespace Tshirt.Controllers
 
                 db.logins.Add(logindetails);
                 db.SaveChanges();
-                return RedirectToAction("SuccessfullyRegister", "Overview");
+                return RedirectToAction("SuccessfullyRegister", "Overview",new {name = username });
             }
             return View();
         }
@@ -205,8 +205,9 @@ namespace Tshirt.Controllers
             return View();
         }
 
-        public ActionResult SuccessfullyRegister()
+        public ActionResult SuccessfullyRegister(string name)
         {
+            ViewBag.name = name;
             return View();
         }
         public ActionResult EmailVerifications(string htmlString)
@@ -307,7 +308,7 @@ namespace Tshirt.Controllers
         }
 
         [HttpPost]
-        public ActionResult RequestOrder(string name,string title,string designdate,string deleverydate, string deleveryaddress,string printcatogory,string printcolor,string discription,string designprice,string printprice, HttpPostedFileBase uploadsample)
+        public ActionResult RequestOrder(string name,string title,string designdate,string deleverydate, string deleveryaddress,string printcatogory,string printcolor,string discription,string designprice,string printprice, HttpPostedFileBase uploadoriginal, HttpPostedFileBase uploadsample)
         {
             RequestOrder order = new RequestOrder();
             string path = Server.MapPath("~/img/orderimage/");
@@ -315,7 +316,7 @@ namespace Tshirt.Controllers
             {
                 Directory.CreateDirectory(path);
             }
-            
+            uploadoriginal.SaveAs(path + Path.GetFileName(uploadoriginal.FileName));
             uploadsample.SaveAs(path + Path.GetFileName(uploadsample.FileName));
             ViewBag.Message = "File uploaded successfully.";
             order.name = name;
@@ -329,11 +330,36 @@ namespace Tshirt.Controllers
             order.designprice = designprice;
             order.printprice = printprice;
             order.uploadsample = uploadsample.FileName;
+            order.uploadoriginal = uploadoriginal.FileName;
             order.adminconfirm = 0;
 
             db.requestOrders.Add(order);
             db.SaveChanges();
 
+            Offer offerpagesave = new Offer();
+            offerpagesave.offerName = printcatogory;
+            offerpagesave.offerEntryDate = DateTime.Now;
+            int numberofdate = Convert.ToInt32( designdate );
+            offerpagesave.offerNumberOfDay = numberofdate;
+            if (uploadsample.FileName == "")
+            {
+                offerpagesave.offerImage = "thirtoffer.png";
+            }
+            else
+            {
+                offerpagesave.offerImage = uploadsample.FileName;
+            }
+            offerpagesave.offerConfirmWeb = "0";
+            offerpagesave.offerDescriptions = discription;
+            offerpagesave.offerDelete = 0;
+            int dis = Convert.ToInt32(designprice);
+            int pri = Convert.ToInt32(printprice);
+            offerpagesave.offerAmount = dis + pri;
+            offerpagesave.offerDeleveryAddress = deleveryaddress;
+            offerpagesave.buyerConfirmOffer = "no";
+
+            db.offers.Add(offerpagesave);
+            db.SaveChanges();
 
             return View();
         }
