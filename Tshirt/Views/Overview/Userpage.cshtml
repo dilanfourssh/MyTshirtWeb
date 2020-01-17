@@ -1,0 +1,112 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Header.cshtml";
+    ViewBag.Title = "Compnypage";
+}
+<!-- bradcam_area_start  -->
+<div class="bradcam_area breadcam_bg bradcam_overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text">
+                    <h3>Compny Page</h3>
+                    <p><a href="index.html">User Page | </a>@Session["Name"]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bradcam_area_end  -->
+<!-- service_area_start -->
+<div class="service_area">
+    <div class="container p-0">
+        <div class="row no-gutters">
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service">
+                    <div class="icon">
+                        <i class="flaticon-electrocardiogram"></i>
+                    </div>
+                    <h3>COMPLAIN CEYLON PRINT </h3>
+                    <p>you can complain bugs thats web our ceylon print team</p>
+                    <a href="#" class="boxed-btn3-white">click send complain</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service">
+                    <div class="icon">
+                        <i class="flaticon-emergency-call"></i>
+                    </div>
+                    <h3>CONTACT US</h3>
+                    <p>you want to cantact support our website</p>
+                    <a href="#" class="boxed-btn3-white">+94 71 21 25 166</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+                <div class="single_service">
+                    <div class="icon">
+                        <i class="flaticon-first-aid-kit"></i>
+                    </div>
+                    <h3>Tempory Suspend</h3>
+                    <p>Why Your Send Offer Page Tempory Suspend Ceylon Print Team</p>
+                    <a href="#" class="boxed-btn3-white">Click here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- service_area_end -->
+<!-- offers_area_start -->
+<div class="our_department_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-55">
+                    <h3>Send Request</h3>
+                    <p>
+                        Submit Request Buyer Can You Complete and Delevery Thats Order
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-md-6 col-lg-4">
+                <div class="single_department">
+                    <div class="department_thumb">
+                        <img src="~/img/department/completeorder.png" alt="">
+                    </div>
+                    <div class="department_content">
+                        <h3><a href="#">Send Web Design order</a></h3>
+                        <p>this section only connected ceylon print web team</p>
+                        <a href="#" class="learn_more">Click here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-lg-4">
+                <div class="single_department">
+                    <div class="department_thumb">
+                        <img src="~/img/department/notcompleted.png" alt="">
+                    </div>
+                    <div class="department_content">
+                        <h3><a href="#">My order</a></h3>
+                        <p>show your order complete order and currenly work order </p>
+                        <a href="#" class="learn_more">Click here</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-lg-4">
+                <div class="single_department">
+                    <div class="department_thumb">
+                        <img src="~/img/department/sendoffer.png" alt="">
+                    </div>
+                    <div class="department_content">
+                        <h3><a href="#">Send My Order </a></h3>
+                        <p>This is will be use send your order another pesons </p>
+                        <a href='@Url.Action("SendOfferCategory", "Overview")' class="learn_more">Click here</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- offers_area_end -->

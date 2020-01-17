@@ -228,6 +228,7 @@
     <Content Include="Views\Overview\RequestOrder.cshtml" />
     <Content Include="Views\Overview\templateemail.cshtml" />
     <Content Include="Views\Overview\confirmationRegister.cshtml" />
+    <Content Include="Views\Overview\Userpage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

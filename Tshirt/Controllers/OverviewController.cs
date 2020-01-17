@@ -363,5 +363,9 @@ namespace Tshirt.Controllers
 
             return View();
         }
+        public ActionResult Userpage()
+        {
+            return View();
+        }
     }
 }
