@@ -14,18 +14,18 @@ using Tshirt.Models;
 
 namespace Tshirt.Controllers
 {
-    
+
     public class OverviewController : Controller
     {
         private tshirtContext db = new tshirtContext();
         private object postedFile;
 
         // GET: Overview
-        private static void Main(string [] args)
+        private static void Main(string[] args)
         {
-            using (var dbContext=new tshirtContext())
+            using (var dbContext = new tshirtContext())
             {
-                
+
                 dbContext.Database.Initialize(true);
             }
         }
@@ -39,23 +39,23 @@ namespace Tshirt.Controllers
         }
         public ActionResult Progamming(string pagename)
         {
-            
-                var tshirtDetails = db.tshirtImages.Where(d => d.category == pagename).ToList();
-                ViewBag.tshirtdetailspasstheview = tshirtDetails;
-                ViewBag.listcount = tshirtDetails.Count();
-                return View();
-            
+
+            var tshirtDetails = db.tshirtImages.Where(d => d.category == pagename).ToList();
+            ViewBag.tshirtdetailspasstheview = tshirtDetails;
+            ViewBag.listcount = tshirtDetails.Count();
+            return View();
+
         }
-        public ActionResult Singleproductpage(int ? imagename)
+        public ActionResult Singleproductpage(int? imagename)
         {
             var Singlepageimagelist = db.tshirtImages.Where(d => d.id == imagename).FirstOrDefault();
             ViewBag.singleimage = Singlepageimagelist;
             return View();
         }
         [HttpPost]
-       public ActionResult Singleproductpage(int ? tshirtid, string companymassege,string name,string email,string  width, string  hight,string address,string phonenumber)
+        public ActionResult Singleproductpage(int? tshirtid, string companymassege, string name, string email, string width, string hight, string address, string phonenumber)
         {
-           
+
 
             Tshirtorder tshirtobject = new Tshirtorder();
             tshirtobject.orderDescription = companymassege;
@@ -69,11 +69,11 @@ namespace Tshirt.Controllers
 
             db.tshirtorders.Add(tshirtobject);
             db.SaveChanges();
-            
+
             return RedirectToAction("Thankyoupage", "Overview", new { imagename = tshirtid });
-            
+
         }
-        public ActionResult Thankyoupage(int ? imagename)
+        public ActionResult Thankyoupage(int? imagename)
         {
             ViewBag.imagenamedetails = imagename;
             return View();
@@ -89,10 +89,10 @@ namespace Tshirt.Controllers
                 return View();
             }
             return RedirectToAction("login", "Overview");
-    }
+        }
         public ActionResult SignIn()
         {
-           
+
             return View();
         }
         public ActionResult BuyerRegiser()
@@ -100,7 +100,7 @@ namespace Tshirt.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult BuyerRegiser(string fullName,string userName,string inputEmail,string password)
+        public ActionResult BuyerRegiser(string fullName, string userName, string inputEmail, string password)
         {
             Login logins = new Login();
             logins.loginName = fullName;
@@ -117,13 +117,13 @@ namespace Tshirt.Controllers
 
         public ActionResult CompanyRegister()
         {
-          
-                return View();
-            
+
+            return View();
+
         }
         [HttpPost]
-       public ActionResult CompanyRegister(string companymassege,string companyname,string email,string ownerName,string owneridnumber,string tshirt,string tshirtprint,string offsetprint,
-                                            string digitalprint,string plastic,string mug,string companylocation,string companyaddress,string agree)
+        public ActionResult CompanyRegister(string companymassege, string companyname, string email, string ownerName, string owneridnumber, string tshirt, string tshirtprint, string offsetprint,
+                                            string digitalprint, string plastic, string mug, string companylocation, string companyaddress, string agree)
         {
             CompanyRegister companys = new CompanyRegister();
             companys.companyMassege = companymassege;
@@ -148,16 +148,16 @@ namespace Tshirt.Controllers
             db.companyRegisters.Add(companys);
             db.SaveChanges();
 
-            return RedirectToAction("SentMail", "Overview",new {name = companyname,otpcode=randomNumber,id=companys.companyRegisterId,emails=email });
+            return RedirectToAction("SentMail", "Overview", new { name = companyname, otpcode = randomNumber, id = companys.companyRegisterId, emails = email });
         }
 
-        public ActionResult SentMail(string name,int otpcode,int id, string emails)
+        public ActionResult SentMail(string name, int otpcode, int id, string emails)
         {
-            string body = this.PopulateBody(name,otpcode);
+            string body = this.PopulateBody(name, otpcode);
             Email.SendMail("req1", emails, "confirm Your Email", body);
-            return RedirectToAction("confirmationRegister", "Overview",new {ids = id });
+            return RedirectToAction("confirmationRegister", "Overview", new { ids = id });
         }
-        private string PopulateBody(string userName,int otpcode)
+        private string PopulateBody(string userName, int otpcode)
         {
             string date = DateTime.Now.ToString();
             int y = 0;
@@ -169,9 +169,9 @@ namespace Tshirt.Controllers
                 body = reader.ReadToEnd();
             }
             body = body.Replace("{date}", date);
-            body = body.Replace("{otpcode}", otp);  
+            body = body.Replace("{otpcode}", otp);
             return body;
-            
+
         }
         public ActionResult confirmationRegister(int ids)
         {
@@ -179,23 +179,23 @@ namespace Tshirt.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult confirmationRegister(string confirmation,int idvalue,string username, string password)
+        public ActionResult confirmationRegister(string confirmation, int idvalue, string username, string password)
         {
             var register = db.companyRegisters.Where(d => d.companyRegisterId == idvalue).FirstOrDefault();
             int comfirm = Convert.ToInt32(confirmation);
-            if(register.otpcode == comfirm)
+            if (register.otpcode == comfirm)
             {
                 Login logindetails = new Login();
                 logindetails.loginName = register.ownerName;
                 logindetails.userName = username;
-                logindetails.loginRole = "company";
+                logindetails.loginRole = "buyer";
                 string pwd = SHA.GenerateSHA256String(username + password);
                 logindetails.loginPassword = pwd;
                 logindetails.companyRegisterLoginId = idvalue;
 
                 db.logins.Add(logindetails);
                 db.SaveChanges();
-                return RedirectToAction("SuccessfullyRegister", "Overview",new {name = username });
+                return RedirectToAction("SuccessfullyRegister", "Overview", new { name = username });
             }
             return View();
         }
@@ -212,26 +212,26 @@ namespace Tshirt.Controllers
         }
         public ActionResult EmailVerifications(string htmlString)
         {
-           
-                try
-                {
-                    MailMessage message = new MailMessage();
-                    SmtpClient smtp = new SmtpClient();
-                    message.From = new MailAddress("dilanpiyananda90829@gmail.com");
-                    message.To.Add(new MailAddress("dilan@fourssh.net"));
-                    message.Subject = "Test";
-                    message.IsBodyHtml = true; //to make message body as html  
-                    message.Body = htmlString;
-                    smtp.Port = 587;
-                    smtp.Host = "smtp.gmail.com"; //for gmail host  
-                    smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new NetworkCredential("dilanpiyananda90829@gmail.com", "902420533vV");
-                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtp.Send(message);
-                }
-                catch (Exception) { }
-            
+
+            try
+            {
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.From = new MailAddress("dilanpiyananda90829@gmail.com");
+                message.To.Add(new MailAddress("dilan@fourssh.net"));
+                message.Subject = "Test";
+                message.IsBodyHtml = true; //to make message body as html  
+                message.Body = htmlString;
+                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com"; //for gmail host  
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("dilanpiyananda90829@gmail.com", "902420533vV");
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
+            }
+            catch (Exception) { }
+
             return View();
         }
 
@@ -242,7 +242,7 @@ namespace Tshirt.Controllers
         }
 
         [HttpPost]
-        public ActionResult login(string name,string password)
+        public ActionResult login(string name, string password)
         {
             var ExistingMember = db.logins.Where(x => x.userName == name).FirstOrDefault();
             if (ExistingMember != null)
@@ -251,13 +251,14 @@ namespace Tshirt.Controllers
                 var user = db.logins.Where(d => d.userName == name && d.loginPassword == pwd || d.loginEmail == name && d.loginPassword == pwd).FirstOrDefault();
                 Session["Name"] = user.loginName.ToString();
                 Session["companyrole"] = user.loginRole.ToString();
+                Session["id"] = user.loginId;
                 if (user != null && user.loginRole == "company")
                 {
                     return RedirectToAction("Compnypage", "Overview");
                 }
                 else if (user != null && user.loginRole == "buyer")
                 {
-                    return RedirectToAction("Compnypage", "Overview");
+                    return RedirectToAction("Userpage", "Overview");
                 }
                 else
                 {
@@ -271,7 +272,7 @@ namespace Tshirt.Controllers
         }
         public ActionResult SendOfferCategory()
         {
-            if(Session["Name"] != null)
+            if (Session["Name"] != null)
             {
                 return View();
             }
@@ -279,7 +280,7 @@ namespace Tshirt.Controllers
             {
                 return RedirectToAction("Index", "Overview");
             }
-            
+
         }
         public ActionResult OfferPage(string offer)
         {
@@ -292,7 +293,7 @@ namespace Tshirt.Controllers
             }
             return RedirectToAction("login", "Overview");
         }
-        public ActionResult OfferSinglePage(int ? id)
+        public ActionResult OfferSinglePage(int? id)
         {
             if (Session["Name"] != null)
             {
@@ -300,15 +301,43 @@ namespace Tshirt.Controllers
                 ViewBag.singleimage = Singlepageimagelist;
                 return View();
             }
-            return RedirectToAction("login", "Overview");
+            else
+            {
+                return RedirectToAction("login", "Overview");
+            }
         }
+        [HttpPost]
+        public ActionResult OfferSinglePage(Replyoffer replyoffer)
+        {
+            if (Session["Name"] != null)
+            {
+                int id = Convert.ToInt32(Session["id"]);
+                replyoffer.sessionId = id;
+                db.replyoffers.Add(replyoffer);
+                db.SaveChanges();
+
+                return RedirectToAction("SendOfferCategory", "Overview");
+            }
+            else
+            {
+                return RedirectToAction("login", "Overview");
+            }
+        }
+
         public ActionResult RequestOrder()
         {
-            return View();
+            if (Session["Name"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "Overview");
+            }
         }
 
         [HttpPost]
-        public ActionResult RequestOrder(string name,string title,string designdate,string deleverydate, string deleveryaddress,string printcatogory,string printcolor,string discription,string designprice,string printprice, HttpPostedFileBase uploadoriginal, HttpPostedFileBase uploadsample)
+        public ActionResult RequestOrder(string name, string title, string designdate, string deleverydate, string deleveryaddress, string printcatogory, string printcolor, string discription, string designprice, string printprice, HttpPostedFileBase uploadoriginal, HttpPostedFileBase uploadsample)
         {
             RequestOrder order = new RequestOrder();
             string path = Server.MapPath("~/img/orderimage/");
@@ -339,7 +368,7 @@ namespace Tshirt.Controllers
             Offer offerpagesave = new Offer();
             offerpagesave.offerName = printcatogory;
             offerpagesave.offerEntryDate = DateTime.Now;
-            int numberofdate = Convert.ToInt32( designdate );
+            int numberofdate = Convert.ToInt32(designdate);
             offerpagesave.offerNumberOfDay = numberofdate;
             if (uploadsample.FileName == "")
             {
@@ -357,6 +386,8 @@ namespace Tshirt.Controllers
             offerpagesave.offerAmount = dis + pri;
             offerpagesave.offerDeleveryAddress = deleveryaddress;
             offerpagesave.buyerConfirmOffer = "no";
+            int id = Convert.ToInt32(Session["id"]);
+            offerpagesave.offerManId = id;
 
             db.offers.Add(offerpagesave);
             db.SaveChanges();
@@ -365,6 +396,53 @@ namespace Tshirt.Controllers
         }
         public ActionResult Userpage()
         {
+            return View();
+        }
+        
+        public ActionResult MyOffer()
+        {
+
+            if (Session["Name"] != null)
+            {
+                int id = Convert.ToInt32(Session["id"]);
+                var tshirtDetails = db.offers.Where(d => d.offerManId == id).ToList();
+                ViewBag.tshirtdetailspasstheview = tshirtDetails;
+                ViewBag.listcount = tshirtDetails.Count();
+                return View();
+            }
+            return RedirectToAction("login", "Overview");
+      
+        }
+        
+        public ActionResult MySingleOffer(int ? id)
+        {
+            int ids = Convert.ToInt32(Session["id"]);
+            var checktrueuser = db.offers.Where(d => d.offerId == id).FirstOrDefault();
+            if (Session["Name"] != null && ids == checktrueuser.offerManId)
+            {
+                var Singlepageimagelist = db.offers.Where(d => d.offerId == id).FirstOrDefault();
+                ViewBag.singleimage = Singlepageimagelist;
+
+                var replySinglePage = db.replyoffers.Where(d => d.offerId == id).OrderByDescending(d=>d.replyOfferId).ToList();
+                if(replySinglePage == null)
+                {
+
+                }
+                else
+                {
+                    ViewBag.reply = replySinglePage;
+                }
+                
+                return View();
+            }
+            return RedirectToAction("login", "Overview");
+
+        }
+        public ActionResult WebDesign()
+        {
+            var tshirtDetails = db.webs.ToList();
+            ViewBag.tshirtdetailspasstheview = tshirtDetails;
+            ViewBag.listcount = tshirtDetails.Count();
             return View();
         }
     }

@@ -155,9 +155,11 @@
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Offer.cs" />
+    <Compile Include="Models\Replyoffer.cs" />
     <Compile Include="Models\RequestOrder.cs" />
     <Compile Include="Models\TshirtImage.cs" />
     <Compile Include="Models\Tshirtorder.cs" />
+    <Compile Include="Models\Web.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +171,7 @@
     <Content Include="css\main.css" />
     <Content Include="css\Register.css" />
     <Content Include="css\util.css" />
+    <Content Include="css\webcustom.css" />
     <Content Include="css\zoom.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -229,6 +232,9 @@
     <Content Include="Views\Overview\templateemail.cshtml" />
     <Content Include="Views\Overview\confirmationRegister.cshtml" />
     <Content Include="Views\Overview\Userpage.cshtml" />
+    <Content Include="Views\Overview\WebDesign.cshtml" />
+    <Content Include="Views\Overview\MyOffer.cshtml" />
+    <Content Include="Views\Overview\MySingleOffer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

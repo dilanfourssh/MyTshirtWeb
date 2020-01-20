@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="bradcam_text">
-                    <h3>Compny Page</h3>
+                    <h3>User Page</h3>
                     <p><a href="index.html">User Page | </a>@Session["Name"]</p>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <div class="department_content">
                         <h3><a href="#">My order</a></h3>
                         <p>show your order complete order and currenly work order </p>
-                        <a href="#" class="learn_more">Click here</a>
+                        <a href='@Url.Action("MyOffer", "Overview")' class="learn_more">Click here</a>
                     </div>
                 </div>
             </div>
@@ -101,11 +101,10 @@
                     <div class="department_content">
                         <h3><a href="#">Send My Order </a></h3>
                         <p>This is will be use send your order another pesons </p>
-                        <a href='@Url.Action("SendOfferCategory", "Overview")' class="learn_more">Click here</a>
+                        <a href='@Url.Action("RequestOrder", "Overview")' class="learn_more">Click here</a>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>

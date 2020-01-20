@@ -18,5 +18,6 @@ namespace Tshirt.Models
         public int offerAmount { get; set; }
         public string offerDeleveryAddress { get; set; }
         public string buyerConfirmOffer { get; set; }
+        public int offerManId { get; set; }
     }
 }
