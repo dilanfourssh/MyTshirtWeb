@@ -235,6 +235,7 @@
     <Content Include="Views\Overview\WebDesign.cshtml" />
     <Content Include="Views\Overview\MyOffer.cshtml" />
     <Content Include="Views\Overview\MySingleOffer.cshtml" />
+    <Content Include="Views\Overview\DragandDropTshirt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
