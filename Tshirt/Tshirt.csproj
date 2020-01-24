@@ -236,6 +236,8 @@
     <Content Include="Views\Overview\MyOffer.cshtml" />
     <Content Include="Views\Overview\MySingleOffer.cshtml" />
     <Content Include="Views\Overview\DragandDropTshirt.cshtml" />
+    <Content Include="Views\Overview\ComingSoon.cshtml" />
+    <Content Include="Views\Overview\diln902420533v.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -237,6 +237,7 @@ namespace Tshirt.Controllers
 
         public ActionResult login()
         {
+            return RedirectToAction("ComingSoon", "Overview");
             var dta = db.ColingOffs.ToList();
             return View();
         }
@@ -396,7 +397,14 @@ namespace Tshirt.Controllers
         }
         public ActionResult Userpage()
         {
-            return View();
+            if (Session["Name"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "Overview");
+            }
         }
         
         public ActionResult MyOffer()
@@ -448,6 +456,15 @@ namespace Tshirt.Controllers
         public ActionResult DragandDropTshirt()
         {
             return View();
+        }
+        public ActionResult ComingSoon()
+        {
+
+            return View();
+        }
+        public ActionResult dilan902420533v()
+        {
+            return View(db.tshirtorders.OrderByDescending(d=>d.tshirtorderId).ToList());
         }
     }
 }
