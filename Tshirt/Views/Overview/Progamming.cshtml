@@ -39,24 +39,26 @@
         @for (int j = 0; j < 5; j++)
         {
             
-                <div class="row">
-                    @for (int i = 0; i < 4; i++)
-                    {
+        <div class="row">
+            @for (int i = 0; i < 4; i++)
+            {
 
-                        int imageid = @gettsirtdetails[@k].id;
-                    <div class="col-md-6 col-lg-3">
-                        <div class="single_expert mb-40">
-                            <div class="expert_thumb">
-                                <img src="~/img/experts/@gettsirtdetails[@k].fileName" alt="">
+                int imageid = @gettsirtdetails[@k].id;
+            
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_expert mb-40">
+                        <div class="expert_thumb">
+                            <a href='@Url.Action("Singleproductpage", "Overview", new { imagename=@imageid})'>     <img src="~/img/experts/@gettsirtdetails[@k].fileName" alt=""> </a>
+</div>
+                        <a href='@Url.Action("Singleproductpage", "Overview", new { imagename=@imageid})'>
+                            <div class="experts_name text-center">
+                                <h3>@gettsirtdetails[@k].Name</h3>
+                                <span>@gettsirtdetails[@k].Name</span>
                             </div>
-                            <a href='@Url.Action("Singleproductpage", "Overview", new { imagename=@imageid})'>
-                                <div class="experts_name text-center">
-                                    <h3>@gettsirtdetails[@k].Name</h3>
-                                    <span>@gettsirtdetails[@k].Name</span>
-                                </div>
-                            </a>
-                        </div>
+                        </a>
                     </div>
+                </div>
+            
                         k++;
                         if(k== listcount)
                         {
