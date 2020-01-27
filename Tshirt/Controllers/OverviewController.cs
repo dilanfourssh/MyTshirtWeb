@@ -466,5 +466,9 @@ namespace Tshirt.Controllers
         {
             return View(db.tshirtorders.OrderByDescending(d=>d.tshirtorderId).ToList());
         }
+        public ActionResult PageLogo()
+        {
+            return View();
+        }
     }
 }
