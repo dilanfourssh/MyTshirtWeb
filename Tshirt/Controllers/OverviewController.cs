@@ -11,6 +11,9 @@ using System.Web.Mvc;
 using Tshirt.Classes;
 using Tshirt.Context;
 using Tshirt.Models;
+using SautinSoft.Document;
+using System.Drawing.Imaging;
+
 
 namespace Tshirt.Controllers
 {
@@ -468,6 +471,31 @@ namespace Tshirt.Controllers
         }
         public ActionResult PageLogo()
         {
+            return View();
+        }
+        public ActionResult convertor()
+        {
+            DocumentCore dc = DocumentCore.Load(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\convertor.pdf",
+            new PdfLoadOptions()
+            {
+                DetectTables = true,
+                ConversionMode = PdfConversionMode.Continuous,
+                PageIndex = 0,
+                PageCount = 1
+            });
+
+            dc.Save(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\After.html", new HtmlFixedSaveOptions()
+            {
+                Version = HtmlVersion.Html5,
+                CssExportMode = CssExportMode.Inline,
+                EmbedImages = true
+            });
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/img/orderimage/after.html")))
+            {
+                string body = reader.ReadToEnd();
+            }
+            //body = body.Replace("{date}", date);
+            //body = body.Replace("{otpcode}", otp);
             return View();
         }
     }
