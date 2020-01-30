@@ -24,6 +24,36 @@ namespace Tshirt.Classes
             return GetStringFromHash(hash);
 
         }
+        public static string GenerateSHA512String(string inputString)
+        {
+            byte[] hash = null;
+            try
+            {
+                SHA512 sha512 = SHA512Managed.Create();
+                byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+                hash = sha512.ComputeHash(bytes);
+            }
+            catch (Exception)
+            {
+            }
+            return GetStringFromHash(hash);
+
+        }
+        public static string GenerateSHA1String(string inputString)
+        {
+            byte[] hash = null;
+            try
+            {
+                SHA1 sha1 = SHA1Managed.Create();
+                byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+                hash = sha1.ComputeHash(bytes);
+            }
+            catch (Exception)
+            {
+            }
+            return GetStringFromHash(hash);
+
+        }
         private static string GetStringFromHash(byte[] hash)
         {
             StringBuilder result = new StringBuilder();

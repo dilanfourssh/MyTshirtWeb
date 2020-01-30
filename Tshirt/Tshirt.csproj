@@ -245,6 +245,7 @@
     <Content Include="Views\Overview\ComingSoon.cshtml" />
     <Content Include="Views\Overview\diln902420533v.cshtml" />
     <Content Include="Views\Overview\PageLogo.cshtml" />
+    <Content Include="Views\Overview\sha256.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

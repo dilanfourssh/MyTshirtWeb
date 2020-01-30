@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "sha256";
+    Layout = null;
+    var x = 0;
+   
+  
+}
+
+
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<div class="container">
+    <div class="row" style="margin-top:100px">
+        <div class="col-sm-1">
+
+        </div>
+
+
+        <div class="col-sm-10" style="border: 1px solid lightblue; padding:40px 40px 40px 40px; border-radius: 6px;">
+            <div class="row" style="margin-bottom:30px;">
+                <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y256" style="width:100%;" onclick=myFunction("sha256") value="sha256"id="sha256" name="sha256" >SHA256</button></div>
+                <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y512" style="width:100%;" onclick=myFunction("sha512") value="sha512"id="sha512" name="sha512">SHA512</button></div>
+                <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y1" style="width:100%;" onclick=myFunction("sha1") value="sha1"id="sha1" name="sha1">SHA1</button></div>
+            </div>
+            <div class="row" style="background-color:lightblue; padding:20px 20px 20px 20px; text-align:center; color:white; border-radius:10px">
+                <h2 style="font-family:sans-serif; "><b>Sha256 Hash Genarator</b></h2>
+            </div>
+            <div class="row">
+                Introduction Sha 256
+            </div>
+            @using (Html.BeginForm())
+            {
+                <input type="hidden" name="value" id="value" value="@x" />
+                <div class="row">
+                    <div class="form-group" style="width:100%">
+                        <label for="exampleFormControlTextarea1">Enter Convert Text <meta name="keywords" /></label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="hash"></textarea>
+                    </div>
+                    <div class="form-group" style="width:100%">
+
+                        <button type="submit" class="btn btn-outline-primary">Generate Hash Code</button>
+
+                    </div>
+                </div>
+            }
+            <div class="row">
+                Show Result
+            </div>
+            <div class="row" style="border: 2px solid lightblue; border-radius: 6px; padding:20px 20px 20px 20px; text-align:center; overflow:hidden; word-break:break-all;">
+                @ViewBag.result
+            </div>
+        </div>
+
+        <div class="col-sm-1">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#sha256').change(function () {
+            var doc = document.getElementById("sha256");
+            //(doc.options[doc.selectedIndex].value);
+            alert(doc);
+            $("#month").val(doc.options[doc.selectedIndex].value);
+            var workselected1 = $('#month').val();
+            //alert(workselected1);
+
+            var doc = document.getElementById("getyear");
+            $("#selectyear").val(doc.options[doc.selectedIndex].value);
+
+        });
+    });
+    function myFunction(x) {
+        alert(x);
+        
+        document.getElementById('value').value = x;
+        var workselected1 = document.getElementById('value').value;
+        alert(workselected1);
+
+        
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function submitform(thiss) {
+        $('form').submit();
+
+    }
+</script>

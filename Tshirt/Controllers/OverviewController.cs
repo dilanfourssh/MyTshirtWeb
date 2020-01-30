@@ -471,11 +471,13 @@ namespace Tshirt.Controllers
         }
         public ActionResult PageLogo()
         {
+            
             return View();
+            
         }
         public ActionResult convertor()
         {
-            DocumentCore dc = DocumentCore.Load(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\convertor.pdf",
+            DocumentCore dc = DocumentCore.Load(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\web1.pdf",
             new PdfLoadOptions()
             {
                 DetectTables = true,
@@ -496,6 +498,85 @@ namespace Tshirt.Controllers
             }
             //body = body.Replace("{date}", date);
             //body = body.Replace("{otpcode}", otp);
+            
+            return View();
+        }
+        public ActionResult MathsConvertor()
+        {
+            string y = "10*x+45-(50*y+455)=550x-(45y + 444)";
+            char[] charSeparators = y.ToCharArray();
+            foreach (var a in charSeparators)
+            {
+                var x =a.ToString();
+                if(x == "^")
+                {
+
+                }
+                else
+                {
+                    int value = 0;
+                    foreach (var b in charSeparators)
+                    {
+                        var strings = b.ToString();
+                        
+                        if ( strings == "a"||strings =="b"|| strings == "c" || strings == "d" || strings == "e" || strings == "f" || strings == "g" || strings == "h" || strings == "i" || strings == "j" || strings == "k" || strings == "l" || strings == "m" || strings == "n" || strings == "o" || strings == "p" || strings == "q" || strings == "r" || strings == "s" || strings == "t" || strings == "u" || strings == "v" || strings == "w" || strings == "x" || strings == "y" || strings == "z" ||
+                            strings == "A" || strings == "B" || strings == "C" || strings == "D" || strings == "E" || strings == "F" || strings == "G" || strings == "H" || strings == "I" || strings == "J" || strings == "K" || strings == "L" || strings == "M" || strings == "N" || strings == "O" || strings == "P" || strings == "Q" || strings == "R" || strings == "S" || strings == "T" || strings == "U" || strings == "V" || strings == "W" || strings == "X" || strings == "Y" || strings == "Z")
+                        {
+                            value++;
+                        }
+                    }
+                    if(value > 1)
+                    {
+                        //not a result 
+                    }
+                    else
+                    {
+
+                    }
+                        
+                }
+            }
+            return View();
+        }
+        public ActionResult sha256()
+        {
+            ViewBag.result = 0;
+            ViewBag.y256 = "active";
+            ViewBag.y512 = "";
+            ViewBag.y1 = "";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult sha256(string value,string hash)
+        {
+            if (value == "sha256")
+            {
+                string pwd = SHA.GenerateSHA256String(hash);
+                ViewBag.result = pwd;
+                ViewBag.y256 = "active";
+                ViewBag.y512 = "";
+                ViewBag.y1 = "";
+                return View();
+            }
+            else if (value == "sha512")
+            {
+                string pwd1 = SHA.GenerateSHA512String(hash);
+                ViewBag.result = pwd1;
+                ViewBag.y256 = "";
+                ViewBag.y512 = "active";
+                ViewBag.y1 = "";
+                return View();
+            }
+            else
+            {
+                string pwd2 = SHA.GenerateSHA1String(hash);
+                ViewBag.result = pwd2;
+                ViewBag.y256 = "";
+                ViewBag.y512 = "";
+                ViewBag.y1 = "active";
+                return View();
+            }
             return View();
         }
     }
