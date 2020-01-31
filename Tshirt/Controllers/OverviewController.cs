@@ -13,7 +13,7 @@ using Tshirt.Context;
 using Tshirt.Models;
 using SautinSoft.Document;
 using System.Drawing.Imaging;
-
+using iTextSharp.text.pdf;
 
 namespace Tshirt.Controllers
 {
@@ -492,12 +492,30 @@ namespace Tshirt.Controllers
                 CssExportMode = CssExportMode.Inline,
                 EmbedImages = true
             });
-            using (StreamReader reader = new StreamReader(Server.MapPath("~/img/orderimage/after.html")))
-            {
-                string body = reader.ReadToEnd();
-            }
+            
             //body = body.Replace("{date}", date);
             //body = body.Replace("{otpcode}", otp);
+
+
+            //PdfDocument doc = new PdfDocument(); doc.Pages.Add(new PdfPage()); XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]); XImage img = XImage.FromFile(source); xgr.DrawImage(img, 0, 0); doc.Save(destinaton); doc.Close();
+
+
+            //string pdfpath = "C: \Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage / chart.pdf";
+            var imagepaths = @"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\nes.jpg";
+            string pdfpath = @"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\chart.pdf";
+           
+            using (var doc = new iTextSharp.text.Document())
+            {
+                iTextSharp.text.pdf.PdfWriter.GetInstance(doc, new FileStream(pdfpath, FileMode.Create));
+                doc.Open();
+                
+                    foreach (var item in imagepaths)
+                    {
+                        iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagepaths);
+                        doc.Add(image);
+                    }
+                }
+            
             
             return View();
         }

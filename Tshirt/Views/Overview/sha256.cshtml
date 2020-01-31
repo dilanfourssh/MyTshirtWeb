@@ -3,96 +3,149 @@
     ViewBag.Title = "sha256";
     Layout = null;
     var x = 0;
-   
-  
+    var x1 = ViewBag.y256;
+    var x2 = ViewBag.y512;
+    var x3 = ViewBag.y1;
+    if (@x1 == "active")
+    {
+        x1 = 1;
+        x2 = 0;
+        x3 = 0;
+    }
+    else if (@x2 == "active")
+    {
+        x2 = 1;
+        x1 = 0;
+        x3 = 0;
+    }
+    else if (@x3 == "active")
+    {
+        x3 = 1;
+        x1 = 0;
+        x2 = 0;
+    }
+
+
 }
 
 
 
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="keywords" content="sha256, SHA256, sha1, SHA256, SHA512, SHA1, password generator, encrypt, generator, hash string" />
+    <meta name="description" content="sha256 ,sha512, sha1 online hash generator that is tool hash own word character symbol number" />
+
 </head>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<div class="container">
-    <div class="row" style="margin-top:100px">
-        <div class="col-sm-1">
+<div class="container" style="margin-top:20px">
+   
+    
+        <div class="row">
+            <div class="col-sm-1">
 
-        </div>
-
-
-        <div class="col-sm-10" style="border: 1px solid lightblue; padding:40px 40px 40px 40px; border-radius: 6px;">
-            <div class="row" style="margin-bottom:30px;">
-                <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y256" style="width:100%;" onclick=myFunction("sha256") value="sha256"id="sha256" name="sha256" >SHA256</button></div>
-                <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y512" style="width:100%;" onclick=myFunction("sha512") value="sha512"id="sha512" name="sha512">SHA512</button></div>
-                <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y1" style="width:100%;" onclick=myFunction("sha1") value="sha1"id="sha1" name="sha1">SHA1</button></div>
             </div>
-            <div class="row" style="background-color:lightblue; padding:20px 20px 20px 20px; text-align:center; color:white; border-radius:10px">
-                <h2 style="font-family:sans-serif; "><b>Sha256 Hash Genarator</b></h2>
-            </div>
-            <div class="row">
-                Introduction Sha 256
-            </div>
-            @using (Html.BeginForm())
-            {
-                <input type="hidden" name="value" id="value" value="@x" />
-                <div class="row">
-                    <div class="form-group" style="width:100%">
-                        <label for="exampleFormControlTextarea1">Enter Convert Text <meta name="keywords" /></label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="hash"></textarea>
-                    </div>
-                    <div class="form-group" style="width:100%">
-
-                        <button type="submit" class="btn btn-outline-primary">Generate Hash Code</button>
-
-                    </div>
+            <div class="col-sm-10" style="border: 1px solid lightblue; padding:40px 40px 40px 40px; border-radius: 6px;">
+                <div class="row" style="margin-bottom:30px;">
+                    <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y256" style="width:100%;" onclick=myFunction("sha256") value="sha256" id="sha256" name="sha256">SHA256</button></div>
+                    <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y512" style="width:100%;" onclick=myFunction("sha512") value="sha512" id="sha512" name="sha512">SHA512</button></div>
+                    <div class="col-sm"><button type="button" class="btn btn-outline-success @ViewBag.y1" style="width:100%;" onclick=myFunction("sha1") value="sha1" id="sha1" name="sha1">SHA1</button></div>
                 </div>
-            }
-            <div class="row">
-                Show Result
+                <div class="row" style="background-color:blue; padding:20px 20px 20px 20px; text-align:center; color:white; border-radius:10px; margin-bottom:20px; text-align:center">
+                    <b> <h2 style="font-family:sans-serif;">SHA (Secure Hashing Algorithm)</h2></b>
+                </div>
+                <div class="row" style="text-align: left; margin-bottom: 20px; border: 1px solid lightblue; padding:40px 40px 40px 40px; border-radius: 6px;">
+                    
+
+                    <p>Various Type Of SHA:- 01) SHA1 02) SHA256 3) SHA512</p>
+                    <p>The Secure Hash Algorith is One of a Number of Cryptographic hash functions. There are currently three generations of Secure Hash Algorithm</p>
+                    <p>SHA-1 is the Original 160-bit hash function, Resembling the earlier MD5 algorithm</p>
+                    <p>SHA-2 is a family of two similar hash functions, with defferent block sizes,known as SHA-256 and SHA-512 Uses 64 bit words</p>
+                    <p>SHA-3 is a future hash function standard still in development</p>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <input type="hidden" name="value" id="value" value="@x" />
+                    <div class="row">
+                        <div class="form-group" style="width:100%">
+                            <label for="exampleFormControlTextarea1">Enter Convert Text <meta name="keywords" /></label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="hash"></textarea>
+                        </div>
+                        <div class="form-group" style="width:100%">
+
+                            <button type="submit" class="btn btn-outline-primary">Generate Hash Code</button>
+
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                    Show Result
+                </div>
+                <div class="row" style="border: 2px solid lightblue; border-radius: 6px; padding:20px 20px 20px 20px; text-align:center; overflow:hidden; word-break:break-all;">
+                    @ViewBag.result
+                </div>
             </div>
-            <div class="row" style="border: 2px solid lightblue; border-radius: 6px; padding:20px 20px 20px 20px; text-align:center; overflow:hidden; word-break:break-all;">
-                @ViewBag.result
+
+            <div class="col-sm-1">
+
             </div>
         </div>
-
-        <div class="col-sm-1">
-
-        </div>
+    
     </div>
-</div>
-
-<script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
     $(document).ready(function () {
-        $('#sha256').change(function () {
-            var doc = document.getElementById("sha256");
-            //(doc.options[doc.selectedIndex].value);
-            alert(doc);
-            $("#month").val(doc.options[doc.selectedIndex].value);
-            var workselected1 = $('#month').val();
-            //alert(workselected1);
 
-            var doc = document.getElementById("getyear");
-            $("#selectyear").val(doc.options[doc.selectedIndex].value);
 
-        });
+
+        if (@x1 == 1) {
+            document.getElementById('value').value ="sha256";
+            var workselected1 = document.getElementById('value').value;
+
+        }
+        else if (@x2 == 1) {
+            document.getElementById('value').value ="sha512";
+            var workselected1 = document.getElementById('value').value;
+
+        }
+        else if (@x3 == 1) {
+            document.getElementById('value').value ="sha1";
+            var workselected1 = document.getElementById('value').value;
+
+        }
+
+
     });
     function myFunction(x) {
-        alert(x);
-        
+
+        if (x == "sha256") {
+            $("#sha256").addClass("active");
+            $("#sha512").removeClass("active");
+            $("#sha1").removeClass("active");
+        }
+        if (x == "sha512") {
+            $("#sha512").addClass("active");
+            $("#sha256").removeClass("active");
+            $("#sha1").removeClass("active");
+        }
+        if (x == "sha1") {
+            $("#sha1").addClass("active");
+            $("#sha512").removeClass("active");
+            $("#sha256").removeClass("active");
+        }
         document.getElementById('value').value = x;
         var workselected1 = document.getElementById('value').value;
-        alert(workselected1);
 
-        
-    }
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-    function submitform(thiss) {
-        $('form').submit();
+
 
     }
-</script>
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        function submitform(thiss) {
+            $('form').submit();
+
+        }
+    </script>
