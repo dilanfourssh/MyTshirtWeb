@@ -14,6 +14,8 @@ using Tshirt.Models;
 using SautinSoft.Document;
 using System.Drawing.Imaging;
 using iTextSharp.text.pdf;
+using PdfiumViewer;
+using iTextSharp.text.pdf.parser;
 
 namespace Tshirt.Controllers
 {
@@ -349,8 +351,8 @@ namespace Tshirt.Controllers
             {
                 Directory.CreateDirectory(path);
             }
-            uploadoriginal.SaveAs(path + Path.GetFileName(uploadoriginal.FileName));
-            uploadsample.SaveAs(path + Path.GetFileName(uploadsample.FileName));
+            uploadoriginal.SaveAs(path + System.IO.Path.GetFileName(uploadoriginal.FileName));
+            uploadsample.SaveAs(path + System.IO.Path.GetFileName(uploadsample.FileName));
             ViewBag.Message = "File uploaded successfully.";
             order.name = name;
             order.title = title;
@@ -409,7 +411,7 @@ namespace Tshirt.Controllers
                 return RedirectToAction("login", "Overview");
             }
         }
-        
+
         public ActionResult MyOffer()
         {
 
@@ -422,10 +424,10 @@ namespace Tshirt.Controllers
                 return View();
             }
             return RedirectToAction("login", "Overview");
-      
+
         }
-        
-        public ActionResult MySingleOffer(int ? id)
+
+        public ActionResult MySingleOffer(int? id)
         {
             int ids = Convert.ToInt32(Session["id"]);
             var checktrueuser = db.offers.Where(d => d.offerId == id).FirstOrDefault();
@@ -434,8 +436,8 @@ namespace Tshirt.Controllers
                 var Singlepageimagelist = db.offers.Where(d => d.offerId == id).FirstOrDefault();
                 ViewBag.singleimage = Singlepageimagelist;
 
-                var replySinglePage = db.replyoffers.Where(d => d.offerId == id).OrderByDescending(d=>d.replyOfferId).ToList();
-                if(replySinglePage == null)
+                var replySinglePage = db.replyoffers.Where(d => d.offerId == id).OrderByDescending(d => d.replyOfferId).ToList();
+                if (replySinglePage == null)
                 {
 
                 }
@@ -443,7 +445,7 @@ namespace Tshirt.Controllers
                 {
                     ViewBag.reply = replySinglePage;
                 }
-                
+
                 return View();
             }
             return RedirectToAction("login", "Overview");
@@ -467,13 +469,13 @@ namespace Tshirt.Controllers
         }
         public ActionResult dilan902420533v()
         {
-            return View(db.tshirtorders.OrderByDescending(d=>d.tshirtorderId).ToList());
+            return View(db.tshirtorders.OrderByDescending(d => d.tshirtorderId).ToList());
         }
         public ActionResult PageLogo()
         {
-            
+
             return View();
-            
+
         }
         public ActionResult convertor()
         {
@@ -492,31 +494,116 @@ namespace Tshirt.Controllers
                 CssExportMode = CssExportMode.Inline,
                 EmbedImages = true
             });
-            
-            //body = body.Replace("{date}", date);
-            //body = body.Replace("{otpcode}", otp);
 
+            string pdfPath = @"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\web1.pdf";
+            string outputPath = @"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\web3.jpg";
+            PdfReader reader = new PdfReader(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\rechtangel.pdf");
+            int intPageNum = reader.NumberOfPages;
+            string[] words;
+            string line;
 
-            //PdfDocument doc = new PdfDocument(); doc.Pages.Add(new PdfPage()); XGraphics xgr = XGraphics.FromPdfPage(doc.Pages[0]); XImage img = XImage.FromFile(source); xgr.DrawImage(img, 0, 0); doc.Save(destinaton); doc.Close();
-
-
-            //string pdfpath = "C: \Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage / chart.pdf";
-            var imagepaths = @"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\nes.jpg";
-            string pdfpath = @"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\chart.pdf";
-           
-            using (var doc = new iTextSharp.text.Document())
+            for (int i = 1; i <= intPageNum; i++)
             {
-                iTextSharp.text.pdf.PdfWriter.GetInstance(doc, new FileStream(pdfpath, FileMode.Create));
-                doc.Open();
-                
-                    foreach (var item in imagepaths)
+                string text = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+
+                words = text.Split('\n');
+                for (int j = 0, len = words.Length; j < len; j++)
+                {
+                    line = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(words[j]));
+                }
+            }
+
+            return View();
+        }
+        public ActionResult createhtml()
+        {
+            List<bootstrap_type> mytypeform = new List<bootstrap_type>();
+            PdfReader reader = new PdfReader(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\Dilan.pdf");
+            int intPageNum = reader.NumberOfPages;
+            string[] words;
+            string line;
+            string k;
+            string kfirst;
+            var insertdata = new bootstrap_type();
+            for (int i = 1; i <= intPageNum; i++)
+            {
+                string text = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+
+                words = text.Split('\n');
+                for (int j = 0, len = words.Length; j < len; j++)
+                {
+                    if (words[j] != " ")
                     {
-                        iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagepaths);
-                        doc.Add(image);
+                        line = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(words[j]));
+                        line = line.Trim();
+                        //int start = (line.Length - 8);
+                        
+                            //string whattype = line.Substring(start, 7);
+                            //string whatname = line.Substring(0, (start - 1));
+                            var insertdata1 = new bootstrap_type();
+
+                            var a = line.IndexOf('(');
+                            var b = line.IndexOf(')');
+                        if(a == -1)
+                        {
+                            break;
+                        }
+                            string whattype = line.Substring((a + 1), (b - a - 1));
+                            string whatname = line.Substring(0, a);
+
+                            insertdata1.type = whattype;
+                            insertdata1.name = whatname;
+
+                            insertdata = insertdata1;
+                        
+                        
+                        mytypeform.Add(insertdata);
                     }
                 }
-            
-            
+                webform dt = new webform();
+                using (StreamReader readering = new StreamReader(Server.MapPath("~/Views/Overview/PageLogo.cshtml")))
+                {
+                    k = readering.ReadToEnd();
+                }
+                string s = dt.layout(mytypeform,k);
+                using (StreamReader readering1 = new StreamReader(Server.MapPath("~/Views/Overview/createhtml.cshtml")))
+                {
+                    kfirst = readering1.ReadToEnd();
+                }
+                kfirst = kfirst.Replace("{codebody}", s);
+                using (FileStream fs = new FileStream(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\rechtangel.html", FileMode.Create))
+                {
+                    using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                    {
+                        w.WriteLine(kfirst);
+                    }
+                }
+            }
+
+            //using (StreamReader reader = new StreamReader(Server.MapPath("~/Views/Overview/templateemail.cshtml")))
+            //{
+            //    body = reader.ReadToEnd();
+            //}
+            //body = body.Replace("{date}", date);
+            //body = body.Replace("{otpcode}", otp);
+            //return body;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult createhtml(string name)
+        {
+            string body;
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/Views/Overview/createhtml.cshtml")))
+            {
+                body = reader.ReadToEnd();
+            }
+            using (FileStream fs = new FileStream(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\rechtangel.html", FileMode.Create))
+            {
+                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    w.WriteLine(body);
+                }
+            }
             return View();
         }
         public ActionResult MathsConvertor()
@@ -595,6 +682,10 @@ namespace Tshirt.Controllers
                 ViewBag.y1 = "active";
                 return View();
             }
+            return View();
+        }
+        public ActionResult temporypage()
+        {
             return View();
         }
     }

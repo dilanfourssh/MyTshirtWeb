@@ -55,6 +55,9 @@
       <HintPath>..\packages\iTextSharp.5.5.13.1\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PdfiumViewer, Version=2.13.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>..\packages\PdfiumViewer.2.13.0.0\lib\net20\PdfiumViewer.dll</HintPath>
+    </Reference>
     <Reference Include="SautinSoft.Document, Version=4.2.1.24, Culture=neutral, PublicKeyToken=e759c76c7515592a, processorArchitecture=MSIL">
       <HintPath>..\packages\sautinsoft.document.4.2.1.24\lib\net461\SautinSoft.Document.dll</HintPath>
     </Reference>
@@ -146,6 +149,7 @@
     <Compile Include="Classes\BackEndValidations.cs" />
     <Compile Include="Classes\Email.cs" />
     <Compile Include="Classes\SHA.cs" />
+    <Compile Include="Classes\webform.cs" />
     <Compile Include="Context\tshirtContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OverviewController.cs" />
@@ -159,6 +163,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BestProduct.cs" />
+    <Compile Include="Models\bootstrap type.cs" />
     <Compile Include="Models\ColingOff.cs" />
     <Compile Include="Models\CompanyRegister.cs" />
     <Compile Include="Models\keyAttribute.cs" />
@@ -249,6 +254,8 @@
     <Content Include="Views\Overview\diln902420533v.cshtml" />
     <Content Include="Views\Overview\PageLogo.cshtml" />
     <Content Include="Views\Overview\sha256.cshtml" />
+    <Content Include="Views\Overview\createhtml.cshtml" />
+    <Content Include="Views\Overview\temporypage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
