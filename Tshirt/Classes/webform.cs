@@ -16,6 +16,9 @@ using System.Drawing.Imaging;
 using iTextSharp.text.pdf;
 using PdfiumViewer;
 using iTextSharp.text.pdf.parser;
+using iTextSharp.text;
+using System.Globalization;
+
 namespace Tshirt.Classes
 {
     public class webform
@@ -26,19 +29,30 @@ namespace Tshirt.Classes
             
             string y="";
             
+
             foreach (var s in typeour)
             {
+                TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                
+                var checkb = s.type.IndexOf("-");
+                
+                string whatistypemyform = "";
+                if (checkb != -1)
+                {
+                    whatistypemyform = s.type.Substring(0, checkb);
+                }
+
                 string mytext = "";
                 string dropdownlists = "";
                 string dropdownhtml = "";
-                if (s.type == "textbox")
+                if (textInfo.ToLower(s.type).Trim() == "textbox")
                 {
                     var b = k.IndexOf("endtext");
                     mytext = k.Substring(0, b-1);
                     mytext = mytext.Replace("{name}", s.name);
                    
                 }
-                if (s.type == "e-mails")
+                if (textInfo.ToLower(s.type).Trim() == "e-mails")
                 {
                     var a = k.IndexOf("fromemail");
                     var b = k.IndexOf("endemail");
@@ -46,7 +60,31 @@ namespace Tshirt.Classes
                     mytext = mytext.Replace("{name}", s.name);
 
                 }
-                if(s.type.Length > 15)
+                if (textInfo.ToLower(s.type).Trim() == "textaria")
+                {
+                    var a = k.IndexOf("starttextaria");
+                    var b = k.IndexOf("endtextaria");
+                    mytext = k.Substring((a + "starttextaria".Length + 1), (b - a - "starttextaria".Length - 1));
+                    mytext = mytext.Replace("{name}", s.name);
+
+                }
+                if (textInfo.ToLower(s.type).Trim() == "fileuploader")
+                {
+                    var a = k.IndexOf("uploadfile");
+                    var b = k.IndexOf("enduploadfile");
+                    mytext = k.Substring((a + "uploadfile".Length + 1), (b - a - "uploadfile".Length - 1));
+                    mytext = mytext.Replace("{name}", s.name);
+
+                }
+                if (textInfo.ToLower(s.type).Trim() == "password")
+                {
+                    var a = k.IndexOf("passwordstart");
+                    var b = k.IndexOf("passwordend");
+                    mytext = k.Substring((a + "passwordstart".Length + 1), (b - a - "passwordstart".Length - 1));
+                    mytext = mytext.Replace("{name}", s.name);
+
+                }
+                if (textInfo.ToLower(s.type).Length > 15)
                 {
                     string[] dropmenu = new string[10];
                     var b = s.type.IndexOf('-');
@@ -55,7 +93,7 @@ namespace Tshirt.Classes
                     string typeis = s.type.Substring(0, b);
                     string dropdownname = s.type.Substring((b+1),(s.type.Length - b - 1));
                     string nameis;
-                    if (typeis == "dropdown")
+                    if (textInfo.ToLower(typeis).Trim() == "dropdown")
                     {
                         var firstoption = k.IndexOf("fromdropdownoption");
                         var secondoption = k.IndexOf("enddropdownoption");
@@ -86,12 +124,60 @@ namespace Tshirt.Classes
 
                     }
                 }
-                if(s.type == "submit")
+                if(textInfo.ToLower(s.type).Trim() == "submit")
                 {
                     var a = k.IndexOf("fromsubmit");
                     var b = k.IndexOf("fromsubmitend");
                     mytext = k.Substring((a + "fromsubmit".Length + 1), (b - a - "fromsubmit".Length - 1));
                     mytext = mytext.Replace("{name}", s.name);
+                }
+                if (textInfo.ToLower(whatistypemyform).Trim() == "checkbox")
+                {
+                    var n = s.type.Substring((checkb+1),(s.type.Length - checkb - 1));
+                    string[] words = n.Split(',');
+                    string checkboxhtmloption = "";
+                    foreach(var a in words)
+                    {
+                        var checknamefirst = k.IndexOf("checkboxoption1234");
+                        var checknameend = k.IndexOf("checkboxoptionend1234");
+                        //string yds = k.Substring(checknamefirst+1,(k.Length-checknamefirst-1));
+                        string checkhtml = k.Substring((checknamefirst+ "checkboxoption1234".Length + 1), (checknameend - checknamefirst - "checkboxoption1234".Length - 1));
+                        checkhtml = checkhtml.Replace("{checkoption}", a);
+                        checkboxhtmloption = checkboxhtmloption + checkhtml;
+
+
+                    }
+                    var d = k.IndexOf("boxcheckstart");
+                    var b = k.IndexOf("boxcheckend");
+
+                    mytext = k.Substring((d + "boxcheckstart".Length + 1), (b - d - "boxcheckstart".Length - 1));
+                    mytext = mytext.Replace("{name}", s.name);
+                    mytext = mytext.Replace("{includecheckboxoption}", checkboxhtmloption);
+
+                }
+                if (textInfo.ToLower(whatistypemyform).Trim() == "radio")
+                {
+                    var n = s.type.Substring((checkb + 1), (s.type.Length - checkb - 1));
+                    string[] words = n.Split(',');
+                    string checkboxhtmloption = "";
+                    foreach (var a in words)
+                    {
+                        var checknamefirst = k.IndexOf("radiobutton123");
+                        var checknameend = k.IndexOf("radiobutton123end");
+                        //string yds = k.Substring(checknamefirst+1,(k.Length-checknamefirst-1));
+                        string checkhtml = k.Substring((checknamefirst + "radiobutton123".Length + 1), (checknameend - checknamefirst - "radiobutton123".Length - 1));
+                        checkhtml = checkhtml.Replace("{checkoption}", a);
+                        checkboxhtmloption = checkboxhtmloption + checkhtml;
+
+
+                    }
+                    var d = k.IndexOf("radiomain44");
+                    var b = k.IndexOf("radiomain44end");
+
+                    mytext = k.Substring((d + "radiomain44".Length + 1), (b - d - "radiomain44".Length - 1));
+                    mytext = mytext.Replace("{name}", s.name);
+                    mytext = mytext.Replace("{includeradioboxoption}", checkboxhtmloption);
+
                 }
                 y = y + mytext;
             }

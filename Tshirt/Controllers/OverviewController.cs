@@ -515,19 +515,29 @@ namespace Tshirt.Controllers
 
             return View();
         }
-        public ActionResult createhtml()
+        public ActionResult nexthtml()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult nexthtml(string x)
+        {
+            return RedirectToAction("createhtml", "Overview",new { mydata = x });
+        }
+        public ActionResult createhtml(string mydata)
+        {
+            string passviewhtml = "";
             List<bootstrap_type> mytypeform = new List<bootstrap_type>();
-            PdfReader reader = new PdfReader(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\Dilan.pdf");
-            int intPageNum = reader.NumberOfPages;
+            //PdfReader reader = new PdfReader(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\Dilan.pdf");
+            //int intPageNum = reader.NumberOfPages;
             string[] words;
             string line;
             string k;
             string kfirst;
             var insertdata = new bootstrap_type();
-            for (int i = 1; i <= intPageNum; i++)
-            {
-                string text = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+            
+                //string text = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+                string text = mydata;
 
                 words = text.Split('\n');
                 for (int j = 0, len = words.Length; j < len; j++)
@@ -544,10 +554,12 @@ namespace Tshirt.Controllers
 
                             var a = line.IndexOf('(');
                             var b = line.IndexOf(')');
-                        if(a == -1)
+                        if (a == -1)
                         {
-                            break;
+
                         }
+                        else
+                        {
                             string whattype = line.Substring((a + 1), (b - a - 1));
                             string whatname = line.Substring(0, a);
 
@@ -555,9 +567,10 @@ namespace Tshirt.Controllers
                             insertdata1.name = whatname;
 
                             insertdata = insertdata1;
-                        
-                        
-                        mytypeform.Add(insertdata);
+
+
+                            mytypeform.Add(insertdata);
+                        }
                     }
                 }
                 webform dt = new webform();
@@ -571,14 +584,20 @@ namespace Tshirt.Controllers
                     kfirst = readering1.ReadToEnd();
                 }
                 kfirst = kfirst.Replace("{codebody}", s);
-                using (FileStream fs = new FileStream(@"C:\Users\Owner\source\repos\newupdatetshirtfebruary\MyTshirtWeb\Tshirt\img\orderimage\rechtangel.html", FileMode.Create))
+                var titlehave = mytypeform.Where(d => d.type == "tittle").FirstOrDefault();
+                if (titlehave != null) {
+                    kfirst=kfirst.Replace("{tittle}", titlehave.name);
+                    passviewhtml = kfirst;
+                }
+            string path = Server.MapPath("~/img/orderimage/rectan.html");
+            using (FileStream fs = new FileStream(path, FileMode.Create))
                 {
                     using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                     {
                         w.WriteLine(kfirst);
                     }
                 }
-            }
+            
 
             //using (StreamReader reader = new StreamReader(Server.MapPath("~/Views/Overview/templateemail.cshtml")))
             //{
@@ -587,10 +606,29 @@ namespace Tshirt.Controllers
             //body = body.Replace("{date}", date);
             //body = body.Replace("{otpcode}", otp);
             //return body;
+            return RedirectToAction("Yourformview", "Overview");
+           
+        }
+        public ActionResult Yourformview()
+        {
             return View();
         }
         [HttpPost]
-        public ActionResult createhtml(string name)
+            public ActionResult Yourformview(int x)
+        {
+            string fileName = "rectan.html";// Replace Your Filename with your required filename
+
+            Response.ContentType = "application/octet-stream";
+
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+            Response.TransmitFile(Server.MapPath("~/img/orderimage/" + fileName));//Place "YourFolder" your server folder Here
+
+            Response.End();
+            return RedirectToAction("nexthtml", "Overview");
+        }
+        [HttpPost]
+        public ActionResult createhtml(string name,int a)
         {
             string body;
             using (StreamReader reader = new StreamReader(Server.MapPath("~/Views/Overview/createhtml.cshtml")))

@@ -256,6 +256,8 @@
     <Content Include="Views\Overview\sha256.cshtml" />
     <Content Include="Views\Overview\createhtml.cshtml" />
     <Content Include="Views\Overview\temporypage.cshtml" />
+    <Content Include="Views\Overview\nexthtml.cshtml" />
+    <Content Include="Views\Overview\Yourformview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

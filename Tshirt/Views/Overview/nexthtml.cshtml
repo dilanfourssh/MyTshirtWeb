@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm" style="background-color:cornflowerblue; color:white; border-radius:8px 8px 8px 8px;margin-top:5px; margin-bottom:10px; padding:15px 15px 15px 15px; text-align:center">
+            <h2>Convert Simple Text To Botstrap Responsive Form </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <p>Description in this online tool about using simple text file convert to botstrap responsive form (Only form)</p>
+            <p> <b style="color:red">Ente Your Title (tittle)</b> - "Enter your title" Replace your title but not remove (tittle) [you don't wan't to title remove frst row] </p>
+            <p> <b style="color:red"> Text Box Name</b> - "Text Box Name" Replace your Text Box Name but not remove (textbox) [you don't wan't to title remove that row] </p>
+            <p> <b style="color:red"> Enter checkbox main title(checkbox - firstcheckobxname, secondcheckobxname, thirdcheckobxname) </b> - "Enter checkbox main title" Replace your check Box Name but not remove (checkbox-addyourcheckboxitem1 name,addyourcheckboxitem2 name,...) [you don't wan't to chackboxes remove that row] </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group" style="width:100%">
+                    <label for="exampleFormControlTextarea1">Wite Want Form Field in </label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="15" name="x"></textarea>
+                </div>
+                <button type="submit" class="btn btn-info">Genarate My Form</button>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function submitform(thiss) {
+        $('form').submit();
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#exampleFormControlTextarea1").val("Ente Your Title (tittle) \n Text Box Name(textbox)  \nEnter checkbox main title(checkbox - firstcheckobxname, secondcheckobxname, thirdcheckobxname)  \nNuwan(dropdown - first, second, third, fourth) \nNuwan(dropdown - first, second, third, fourth) \nDilan(textbox)  \nNuwan(dropdown - first, second, third, fourth) \nEnter_Address(textaria) \nMy name is(password) \nYourname is(fileuploader) \nNuwan(radio - first, second, third, fourth) \nApply Position(submit) ");
+    });
+</script>
