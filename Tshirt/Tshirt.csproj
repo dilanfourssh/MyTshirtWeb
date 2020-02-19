@@ -151,8 +151,9 @@
     <Compile Include="Classes\SHA.cs" />
     <Compile Include="Classes\webform.cs" />
     <Compile Include="Context\tshirtContext.cs" />
+    <Compile Include="Controllers\formController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OverviewController.cs" />
+    <Compile Include="Controllers\sha256Controller.cs" />
     <Compile Include="Controllers\userBoundedContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -181,12 +182,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="css\coustomform.css" />
-    <Content Include="css\main.css" />
-    <Content Include="css\Register.css" />
-    <Content Include="css\util.css" />
-    <Content Include="css\webcustom.css" />
-    <Content Include="css\zoom.css" />
+    <Content Include="css\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -207,7 +203,6 @@
     <Content Include="js\modernizr-2.8.3.js" />
     <Content Include="js\navbar.js" />
     <Content Include="js\signup.js" />
-    <Content Include="css\style.css" />
     <Content Include="js\zoomjava.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -222,42 +217,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Overview\Index.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
-    <Content Include="Views\Overview\Progamming.cshtml" />
-    <Content Include="Views\Overview\Customizeorder.cshtml" />
-    <Content Include="Views\Overview\SignIn.cshtml" />
-    <Content Include="Views\Overview\BuyerRegiser.cshtml" />
-    <Content Include="Views\Overview\CompanyRegister.cshtml" />
-    <Content Include="Views\Overview\SuccessfullyRegister.cshtml" />
-    <Content Include="Views\Overview\Singleproductpage.cshtml" />
-    <Content Include="Views\Overview\Thankyoupage.cshtml" />
-    <Content Include="Views\Overview\Compnypage.cshtml" />
-    <Content Include="Views\Overview\EmailVerifications.cshtml" />
-    <Content Include="Views\Overview\login.cshtml" />
-    <Content Include="Views\Overview\SendOfferCategory.cshtml" />
-    <Content Include="Views\Overview\OfferPage.cshtml" />
-    <Content Include="Views\Overview\OfferSinglePage.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="Views\Overview\RequestOrder.cshtml" />
-    <Content Include="Views\Overview\templateemail.cshtml" />
-    <Content Include="Views\Overview\confirmationRegister.cshtml" />
-    <Content Include="Views\Overview\Userpage.cshtml" />
-    <Content Include="Views\Overview\WebDesign.cshtml" />
-    <Content Include="Views\Overview\MyOffer.cshtml" />
-    <Content Include="Views\Overview\MySingleOffer.cshtml" />
-    <Content Include="Views\Overview\DragandDropTshirt.cshtml" />
-    <Content Include="Views\Overview\ComingSoon.cshtml" />
-    <Content Include="Views\Overview\diln902420533v.cshtml" />
-    <Content Include="Views\Overview\PageLogo.cshtml" />
-    <Content Include="Views\Overview\sha256.cshtml" />
-    <Content Include="Views\Overview\createhtml.cshtml" />
-    <Content Include="Views\Overview\temporypage.cshtml" />
-    <Content Include="Views\Overview\nexthtml.cshtml" />
-    <Content Include="Views\Overview\Yourformview.cshtml" />
+    <Content Include="Views\Home\createhtml.cshtml" />
+    <Content Include="Views\Home\nexthtml.cshtml" />
+    <Content Include="Views\Home\PageLogo.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\sha256\Index.cshtml" />
+    <Content Include="Views\form\Index.cshtml" />
+    <Content Include="Views\form\bootstrapformdownload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

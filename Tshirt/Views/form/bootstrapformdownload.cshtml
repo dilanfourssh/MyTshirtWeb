@@ -11,15 +11,32 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <div class="container">
-
-    <div class="row">
+    <div class="row" style="margin-bottom:30px">
+        <div class="col-sm"></div>
         <div class="col-sm">
+
+        </div>
+        <div class="col-sm"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm" >
+            
+            
+        </div>
+        <div class="col-sm"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm" style="background-color:lemonchiffon; color:white; border-radius:8px 8px 8px 8px;margin-top:5px; margin-bottom:10px; padding:15px 15px 15px 15px; text-align:center;">
+            <img src="~/img/orderimage/iconform.png" alt="" />
             @using (Html.BeginForm())
             {
-                <input type="hidden" name="x" value="0"/>
-                <button type="submit" class="btn btn-info">Genarate My Form</button>
+                <input type="hidden" name="x" value="0" />
+                <button type="submit" class="btn btn-info">Download Bootstrap Responsive Form</button>
             }
         </div>
+        <div class="col-sm"></div>
     </div>
 </div>
 

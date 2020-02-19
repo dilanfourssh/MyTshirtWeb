@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm" style="background-color:cornflowerblue; color:white; border-radius:8px 8px 8px 8px;margin-top:5px; margin-bottom:10px; padding:15px 15px 15px 15px; text-align:center">
+            <h2>Convert Simple Text To Botstrap Responsive Form Free</h2>
+        </div>
+    </div>
+    <div class="row" style="border:1px solid; border-radius:8px 8px 8px 8px; padding:20px 20px 20px 20px; margin-bottom:20px ">
+        <div class="col-sm">
+            <h3 style="text-align:center; margin-bottom:30px;" >Description in this online tool about using simple text file convert to botstrap responsive form (Only form)</h3><hr />
+            <p> <b style="color:red">Ente Your Title (<b style="color:blue">tittle</b>)</b> - "Enter your title" Replace your title but not remove ( <b style="color:blue">tittle</b>) [you don't wan't to title Field remove That row] </p>
+            <p> <b style="color:red"> Text Box Name (<b style="color:blue">textbox</b>)</b> - "Text Box Name" Replace your Text Box Name but not remove (<b style="color:blue">textbox</b>) [you don't wan't to Text Box Field remove that row] </p>
+            <p> <b style="color:red"> Enter checkbox main title(<b style="color:blue">checkbox</b> - firstcheckobxname, secondcheckobxname, thirdcheckobxname) </b> - "Enter checkbox main title" Replace your check Box Name but not remove (<b style="color:blue">checkbox</b>-addyourcheckboxitem1 name,addyourcheckboxitem2 name,...) [you don't wan't to chackboxes remove that row] </p>
+            <p> <b style="color:red"> EnterDropdownMainTitle(<b style="color:blue">dropdown</b> - firstdropdownname, seconddropdownname, thirddropdownname, fourthdropdownname) </b> - "Enter Dropdown main title" Replace your dropdown Box Name but not remove (<b style="color:blue">dropdown</b>-firstdropdown item name,second dropdown item name,...) [you don't wan't to dropdwon remove that row] </p>
+            <p> <b style="color:red">Enter Text Box Name(<b style="color:blue">textbox</b>)</b> - "Enter Text Box Name" Replace your Text Box remove (<b style="color:blue">textbox</b>) [you don't wan't to textbox field remove that row] </p>
+            <p> <b style="color:red">Enter Name Your Textaria(<b style="color:blue">textaria</b>)</b> - "Enter Name Your Textaria" Replace Enter Name Your Textaria but not remove (<b style="color:blue">textbox</b>) [you don't wan't to textaria remove that row] </p>
+            <p> <b style="color:red">Enter name password field(<b style="color:blue">password</b>)</b> - "Enter Name password" Replace your password but not remove (<b style="color:blue">password</b>) [you don't wan't to password field remove that row] </p>
+            <p> <b style="color:red">File Upload box Name(<b style="color:blue">fileuploader</b>)</b> - "File Uploader Box Name" Replace your File Uploader Box Name but not remove (<b style="color:blue">fileuploader</b>) [you don't wan't to file Uploader field remove that row] </p>
+            <p> <b style="color:red">Enter Radio Button Name(<b style="color:blue">radio</b> - first Raido Item Name, Second Raido Item Name, Third Raido Item Name, Fourth Raido Item Name)</b> - "Enter Radio Button Name" Replace your Radio Button Name but not remove (<b style="color:blue">radio</b>-first radio name,Second radio item name,...) [you don't wan't to radio button field remove that row] </p>
+            <p> <b style="color:red">Apply Position(<b style="color:blue">submit</b>)</b> - "Apply Position" Replace your submit button Name but not remove (<b style="color:blue">submit</b>) [you don't wan't to  submit button field remove that row] </p>
+            <p>You want to multiple textbox or other filds Copy and Paste next row </p>
+            <p><b style="color:red">specialy That form Genarate in row order </b></p>
+        </div>
+    </div>
+    <div class="row" style="border:1px solid; border-radius:8px 8px 8px 8px; padding:20px 20px 20px 20px; margin-bottom:20px ">
+        <div class="col-sm">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group" style="width:100%">
+                    <label for="exampleFormControlTextarea1" style="background-color:cornflowerblue; color:white; border-radius:8px 8px 8px 8px;margin-top:5px; margin-bottom:10px; padding:15px 15px 15px 15px; text-align:center; width:100%">Write Your Form Field Names Want Genarate </label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="15" name="x"></textarea>
+                </div>
+                <button type="submit" class="btn btn-info">Genarate My Form</button>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function submitform(thiss) {
+        $('form').submit();
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#exampleFormControlTextarea1").val("Enter Your Title (tittle) \nText Box Name(textbox)  \nEnter checkbox main title(checkbox - firstcheckobxname, secondcheckobxname, thirdcheckobxname)  \nEnterDropdownMainTitle(dropdown - firstdropdownname, seconddropdownname, thirddropdownname, fourthdropdownname) \nEnter Text Box Name(textbox)  \nEnter Name Your Textaria(textaria) \nEnter name password field(password) \nFile Upload box Name(fileuploader) \nEnter Radio Button Name(radio - first Raido Item Name, Second Raido Item Name, Third Raido Item Name, Fourth Raido Item Name) \nApply Position(submit)");
+    });
+</script>
