@@ -48,6 +48,14 @@ namespace Tshirt.Controllers
             //return View();
             return View();
         }
+        public ActionResult Template()
+        {
+            return View();
+        }
+        public ActionResult TemplateDownload()
+        {
+            return View();
+        }
         public ActionResult Progamming(string pagename)
         {
 

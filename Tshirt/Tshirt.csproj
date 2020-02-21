@@ -226,6 +226,8 @@
     <Content Include="Views\sha256\Index.cshtml" />
     <Content Include="Views\form\Index.cshtml" />
     <Content Include="Views\form\bootstrapformdownload.cshtml" />
+    <Content Include="Views\Home\Template.cshtml" />
+    <Content Include="Views\Home\TemplateDownload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -12,8 +13,12 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">MyCompany Name</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:40px">
+        <a class="navbar-brand" href="#">
+        <h4 style="color:green">
+             Colurslib | Primium
+        </h4>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,15 +26,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Home</a>
+                    <a class="nav-link " href='@Url.Action("Index", "Home")'>Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Template
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Website</a>
-                        <a class="dropdown-item" href="#">Android</a>
+                        <a class="dropdown-item" href='@Url.Action("Template", "Home")'>Website</a>
+                        <a class="dropdown-item"href='@Url.Action("Template", "Home")'>Android</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -47,8 +52,7 @@
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login | Register</button>
             </form>
         </div>
     </nav>
@@ -62,5 +66,26 @@
     @RenderBody()
 
     <!-- footer start -->
+
+    <footer>
+        <div class="container-fluid" style="background-color:#f8f9fa; margin-top:50px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm" style="padding:40px 40px 40px 40px;">
+                        <h2 style="color:green">COLORSLIB | worldwide</h2>
+                        <p> Main Head Office: Sri Lanka </p>
+                        
+                    </div>
+                    <div class="col-sm" style="padding:40px 40px 40px 40px;">
+                        <h5 style="color:green">OUR SERVICE</h5>
+                        <h6> WebTemplate | Android Template </h6>
+                        <h6> Online Genarate Form Tool [Premium] | Hash Generator</h6>
+                        <p> This Website Issue Template Only unique our Website</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</footer>
 </body>
 </html>
