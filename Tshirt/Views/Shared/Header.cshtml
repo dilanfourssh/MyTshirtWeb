@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    var sentdata = new Tshirt.Models.addproject();
+    sentdata.category = "Web";
 }
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -14,7 +16,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:40px">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href='@Url.Action("Index", "Home")'>
         <h4 style="color:green">
              Colurslib | Primium
         </h4>
@@ -33,8 +35,9 @@
                         Template
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href='@Url.Action("Template", "Home")'>Website</a>
-                        <a class="dropdown-item"href='@Url.Action("Template", "Home")'>Android</a>
+                        <a class="dropdown-item" href='@Url.Action("Bootstrap", "Home")'>Website</a>
+                        <a class="dropdown-item" href='@Url.Action("Android", "Home")'>Android</a>
+                        <a class="dropdown-item" href='@Url.Action("Flutter", "Home")'>Flutter</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -42,8 +45,8 @@
                         Tool
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href='@Url.Action("Index", "form", new { bcvalue1 = 0, jumphistory=0,passmonth = "defalmonth", yearselection = 2020 })'>Form Generator</a>
-                        <a class="dropdown-item" href='@Url.Action("Index", "sha256", new { bcvalue1 = 0, jumphistory=0,passmonth = "defalmonth", yearselection = 2020 })'>Hash Generator</a>
+                        <a class="dropdown-item" href='@Url.Action("Index", "form")'>Form Generator</a>
+                        <a class="dropdown-item" href='@Url.Action("Index", "sha256")'>Hash Generator</a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -51,9 +54,19 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            @if (Session["email"] == null)
+            {
+            <a href='@Url.Action("Login", "Home")'>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login | Register</button>
-            </form>
+            </a>
+            }
+            else
+            {
+            <a href='@Url.Action("SignOut", "Home")'>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Out</button>
+            </a>
+            }
+
         </div>
     </nav>
 

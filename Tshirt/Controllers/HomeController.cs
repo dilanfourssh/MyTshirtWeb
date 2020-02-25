@@ -50,12 +50,166 @@ namespace Tshirt.Controllers
         }
         public ActionResult Template()
         {
+            
+                ViewBag.template = db.addprojects.Where(d => d.category == "web").ToList();
+                int countingposition= db.addprojects.Where(d => d.category == "web").Count();
+                ViewBag.positions = (countingposition / 3) + 1;
+                ViewBag.countingposition = countingposition;
+
+            
             return View();
         }
-        public ActionResult TemplateDownload()
+        public ActionResult Android()
+        {
+
+            ViewBag.template = db.addprojects.Where(d => d.category == "android").ToList();
+            int countingposition = db.addprojects.Where(d => d.category == "android").Count();
+            ViewBag.positions = (countingposition / 3) + 1;
+            ViewBag.countingposition = countingposition;
+
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Android(addproject adds)
+        {
+            return RedirectToAction("TemplateDownload", "Home", new { tempplateid = adds.id });
+
+        }
+        public ActionResult Bootstrap()
+        {
+
+            ViewBag.template = db.addprojects.Where(d => d.category == "web").ToList();
+            int countingposition = db.addprojects.Where(d => d.category == "web").Count();
+            ViewBag.positions = (countingposition / 3) + 1;
+            ViewBag.countingposition = countingposition;
+
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Bootstrap(addproject adds)
+        {
+            return RedirectToAction("TemplateDownload", "Home",new {tempplateid = adds.id});
+            
+        }
+        public ActionResult Flutter()
+        {
+
+            ViewBag.template = db.addprojects.Where(d => d.category == "flutter").ToList();
+            int countingposition = db.addprojects.Where(d => d.category == "flutter").Count();
+            ViewBag.positions = (countingposition / 3) + 1;
+            ViewBag.countingposition = countingposition;
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Flutter(addproject adds)
+        {
+            return RedirectToAction("TemplateDownload", "Home", new { tempplateid = adds.id });
+
+        }
+        public ActionResult TemplateDownload(int tempplateid)
+        {
+            ViewBag.templatedownload = db.addprojects.Where(d => d.id == tempplateid).FirstOrDefault();
+            return View();
+        }
+        public ActionResult Login()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult Login(Register logins)
+        {
+            var ExistingMember = db.registers.Where(x => x.email == logins.email).FirstOrDefault();
+            if (ExistingMember != null)
+            {
+                string pwd = SHA.GenerateSHA256String(logins.email + logins.password);
+                var user = db.registers.Where(d => d.email == logins.email && d.password == pwd).FirstOrDefault();
+                if (user != null)
+                {
+                    Session["email"] = user.email.ToString();
+                    Session["id"] = user.Id.ToString();
+                    var previousurl = System.Web.HttpContext.Current.Request.UrlReferrer;
+                    return View(previousurl);
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            return View();
+        }
+        public ActionResult Register()
+        {
+            
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(Register registration)
+        {
+            int emailstatus = db.registers.Where(d => d.email == registration.email).Count();
+            if(registration.password == registration.password2 && emailstatus == 0)
+            {
+                string pwd = SHA.GenerateSHA256String(registration.email + registration.password);
+                registration.password = pwd;
+                db.registers.Add(registration);
+                db.SaveChanges();
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
+        }
+        public ActionResult SignOut()
+        {
+            Session["email"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult Administrator()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Administrator(string category, HttpPostedFileBase imgname1, HttpPostedFileBase imgname2, HttpPostedFileBase imgname3, HttpPostedFileBase zipfilename,string tittle,string smallDescription, string largeDescription)
+        {
+
+            string path = Server.MapPath("~/img/orderimage/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            int idmy = Convert.ToInt32(Session["id"]);
+            string count = db.addprojects.Count().ToString();
+            string imgnamesone = Session["email"].ToString()+"1"+count;
+            string imgnamestwo = Session["email"].ToString() + "2" + count;
+            string imgnamesthree = Session["email"].ToString() + "3" + count;
+            string zipimagename = Session["email"].ToString() + "originalimage" + count;
+
+            imgname1.SaveAs(path + System.IO.Path.GetFileName(imgnamesone));
+            imgname2.SaveAs(path + System.IO.Path.GetFileName(imgnamestwo));
+            imgname3.SaveAs(path + System.IO.Path.GetFileName(imgnamesthree));
+            imgname3.SaveAs(path + System.IO.Path.GetFileName(imgnamesthree));
+            zipfilename.SaveAs(path + System.IO.Path.GetFileName(zipimagename));
+
+            addproject projectmyupload = new addproject();
+            projectmyupload.imgname1 = imgnamesone;
+            projectmyupload.imgname2 = imgnamestwo;
+            projectmyupload.imgname3 = imgnamesthree;
+            projectmyupload.zipfilename = zipimagename;
+            projectmyupload.category = category;
+            projectmyupload.folderpath = "";
+            projectmyupload.sessionid = idmy;
+            projectmyupload.tittle = tittle;
+            projectmyupload.smallDescription = smallDescription;
+            projectmyupload.largeDescription = largeDescription;
+
+            db.addprojects.Add(projectmyupload);
+            db.SaveChanges();
+            return View();
+        }
+
+        //my second project**********************************************************************************************************************************************************************************************
         public ActionResult Progamming(string pagename)
         {
 
@@ -254,42 +408,42 @@ namespace Tshirt.Controllers
             return View();
         }
 
-        public ActionResult login()
-        {
-            return RedirectToAction("ComingSoon", "Home");
-            var dta = db.ColingOffs.ToList();
-            return View();
-        }
+        //public ActionResult login()
+        //{
+        //    return RedirectToAction("ComingSoon", "Home");
+        //    var dta = db.ColingOffs.ToList();
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult login(string name, string password)
-        {
-            var ExistingMember = db.logins.Where(x => x.userName == name).FirstOrDefault();
-            if (ExistingMember != null)
-            {
-                string pwd = SHA.GenerateSHA256String(name + password);
-                var user = db.logins.Where(d => d.userName == name && d.loginPassword == pwd || d.loginEmail == name && d.loginPassword == pwd).FirstOrDefault();
-                Session["Name"] = user.loginName.ToString();
-                Session["companyrole"] = user.loginRole.ToString();
-                Session["id"] = user.loginId;
-                if (user != null && user.loginRole == "company")
-                {
-                    return RedirectToAction("Compnypage", "Home");
-                }
-                else if (user != null && user.loginRole == "buyer")
-                {
-                    return RedirectToAction("Userpage", "Home");
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            else
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //public ActionResult login(string name, string password)
+        //{
+        //    var ExistingMember = db.logins.Where(x => x.userName == name).FirstOrDefault();
+        //    if (ExistingMember != null)
+        //    {
+        //        string pwd = SHA.GenerateSHA256String(name + password);
+        //        var user = db.logins.Where(d => d.userName == name && d.loginPassword == pwd || d.loginEmail == name && d.loginPassword == pwd).FirstOrDefault();
+        //        Session["Name"] = user.loginName.ToString();
+        //        Session["companyrole"] = user.loginRole.ToString();
+        //        Session["id"] = user.loginId;
+        //        if (user != null && user.loginRole == "company")
+        //        {
+        //            return RedirectToAction("Compnypage", "Home");
+        //        }
+        //        else if (user != null && user.loginRole == "buyer")
+        //        {
+        //            return RedirectToAction("Userpage", "Home");
+        //        }
+        //        else
+        //        {
+        //            return View();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return View();
+        //    }
+        //}
         public ActionResult SendOfferCategory()
         {
             if (Session["Name"] != null)

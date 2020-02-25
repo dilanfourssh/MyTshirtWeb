@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Header.cshtml";
+    var templatedesign = ViewBag.template;
+    int i = 0;
+    int templatcount = ViewBag.positions;
+    int positioncounting = ViewBag.countingposition;
+    int lx = 0;
+    string ly = "no";
+    int loopcount = 4;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+
+
+    <div class="container">
+        <div class="row" id="webtemplatetitle">
+            <div class="col-md col-sm" style="border-radius:15px 15px 15px 15px;"><img src="~/img/orderimage/templatemain.png" style="width:100%; border-radius:15px 15px 15px 15px;" /></div>
+        </div>
+        <div class="row" id="webtemplatetitle" style="background-color:#f8f9fa; border-radius:10px 10px 10px 10px; padding:20px 20px 20px 20px;">
+            <div class="col-md col-sm">
+                <h4 style="color:green"> <i class="fa fa-download"></i> Premium Qulity Android Flutter Template ....</h4>
+            </div>
+        </div>
+        @{
+            for (int y = 0; y < templatcount; y++)
+            {
+                <div class="row" id="imagerow" style="margin-top:30px;">
+                    @for (int yx = 1; yx < 4; yx++)
+                    {
+                        lx = (y * 3) + yx;
+                        <div class="col-sm">
+                            <div class="container" id="imagesdrop" style="background:#f8f9fa; padding:10px 10px 10px 10px">
+                                <img src="~/img/orderimage/@templatedesign[i].imgname1" alt="Avatar" class="image" style="width:100%">
+                                <div class="middle">
+                                    @using (Html.BeginForm())
+                                    {
+                                        <input type="hidden" value="@templatedesign[i].id" name="id" />
+                                        <button type="submit" class="btn btn-danger btn-lg">View | Download</button>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="container" id="imagesdrop" style="background:#f8f9fa; margin-top:15px">
+                                <div class="col-sm" style="padding-top:30px; padding-bottom:10px;">
+                                    <h4 style="color:green">  <i class="fa fa-download"></i>@templatedesign[i].tittle</h4>
+                                    <p>@templatedesign[i].smallDescription</p>
+                                </div>
+                            </div>
+                        </div>
+                        if (lx == positioncounting)
+                        {
+                            ly = "yes";
+                            loopcount = yx + 1;
+                            break;
+                        }
+                        i++;
+                    }
+
+                    @if (ly == "yes")
+                    {
+                        for (int k = loopcount; k < 4; k++)
+                        {
+                            <div class="col-sm"></div>
+                        }
+                        break;
+                    }
+                </div>
+
+            }
+
+        }
+
+    </div>
+
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function submitform(thiss) {
+        $('form').submit();
+    }
+</script>

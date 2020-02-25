@@ -163,6 +163,7 @@
       <DependentUpon>201911130836490_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\addproject.cs" />
     <Compile Include="Models\BestProduct.cs" />
     <Compile Include="Models\bootstrap type.cs" />
     <Compile Include="Models\ColingOff.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Models\keyAttribute.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Offer.cs" />
+    <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Replyoffer.cs" />
     <Compile Include="Models\RequestOrder.cs" />
     <Compile Include="Models\TshirtImage.cs" />
@@ -228,6 +230,12 @@
     <Content Include="Views\form\bootstrapformdownload.cshtml" />
     <Content Include="Views\Home\Template.cshtml" />
     <Content Include="Views\Home\TemplateDownload.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Android.cshtml" />
+    <Content Include="Views\Home\Bootstrap.cshtml" />
+    <Content Include="Views\Home\Flutter.cshtml" />
+    <Content Include="Views\Home\Administrator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

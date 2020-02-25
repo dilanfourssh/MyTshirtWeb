@@ -1,6 +1,14 @@
 ﻿
 @{
     Layout = "~/Views/Shared/Header.cshtml";
+    var templatedesign = ViewBag.template;
+    int i = 0;
+    int templatcount = ViewBag.positions;
+    int positioncounting = ViewBag.countingposition;
+    int lx = 0;
+    string ly = "no";
+    int loopcount = 4;
+
 }
 
 <!DOCTYPE html>
@@ -13,8 +21,8 @@
 </head>
 <body>
 
-    
 
+    
     <div class="container">
         <div class="row" id="webtemplatetitle">
             <div class="col-md col-sm" style="border-radius:15px 15px 15px 15px;"><img src="~/img/orderimage/templatemain.png" style="width:100%; border-radius:15px 15px 15px 15px;" /></div>
@@ -24,55 +32,53 @@
                 <h4 style="color:green"> <i class="fa fa-download"></i> Premium Qulity Android Flutter Template ....</h4>
             </div>
         </div>
+        @{
+            for (int y = 0; y < templatcount; y++)
+            {
         <div class="row" id="imagerow" style="margin-top:30px;">
-            <div class="col-sm">
-                <div class="container" id="imagesdrop" style="background:#f8f9fa; padding:10px 10px 10px 10px">
-                    <img src="~/img/orderimage/mobile.png" alt="Avatar" class="image" style="width:100%">
-                    <div class="middle">
-                        <button type="button" class="btn btn-danger btn-lg">View | Download</button>
+            @for (int yx = 1; yx < 4; yx++)
+            {
+                lx = (y * 3) + yx;
+                <div class="col-sm">
+                    <div class="container" id="imagesdrop" style="background:#f8f9fa; padding:10px 10px 10px 10px">
+                        <img src="~/img/orderimage/@templatedesign[i].imgname1" alt="Avatar" class="image" style="width:100%">
+                        <div class="middle">
+                            <button type="button" class="btn btn-danger btn-lg">View | Download</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="container" id="imagesdrop" style="background:#f8f9fa; margin-top:15px">
-                    <div class="col-sm" style="padding-top:30px; padding-bottom:10px;">
-                        <h4 style="color:green">  <i class="fa fa-download"></i> Theme Title</h4>
-                        <p>About Theme Small Description</p>
+                    <div class="container" id="imagesdrop" style="background:#f8f9fa; margin-top:15px">
+                        <div class="col-sm" style="padding-top:30px; padding-bottom:10px;">
+                            <h4 style="color:green">  <i class="fa fa-download"></i> Theme Title</h4>
+                            <p>About Theme Small Description</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm">
-                <div class="container" id="imagesdrop" style="background:#f8f9fa; padding:10px 10px 10px 10px">
-                    <img src="~/img/orderimage/mobile.png" alt="Avatar" class="image" style="width:100%">
-                    <div class="middle">
-                        <button type="button" class="btn btn-danger btn-lg">View | Download</button>
-                    </div>
-                </div>
+                if (lx == positioncounting)
+                {
+                    ly = "yes";
+                    loopcount = yx + 1;
+                    break;
+                }
+                i++;
+            }
 
-                <div class="container" id="imagesdrop" style="background:#f8f9fa; margin-top:15px">
-                    <div class="col-sm" style="padding-top:30px; padding-bottom:10px;">
-                        <h4 style="color:green">  <i class="fa fa-download"></i> Theme Title</h4>
-                        <p>About Theme Small Description</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="container" id="imagesdrop" style="background:#f8f9fa; padding:10px 10px 10px 10px">
-                    <img src="~/img/orderimage/mobile.png" alt="Avatar" class="image" style="width:100%">
-                    <div class="middle">
-                        <button type="button" class="btn btn-danger btn-lg">View | Download</button>
-                    </div>
-                </div>
-
-                <div class="container" id="imagesdrop" style="background:#f8f9fa; margin-top:15px">
-                    <div class="col-sm" style="padding-top:30px; padding-bottom:10px;">
-                        <h4 style="color:green">  <i class="fa fa-download"></i> Theme Title</h4>
-                        <p>About Theme Small Description</p>
-                    </div>
-                </div>
-            </div>
-
+            @if(ly == "yes")
+            {
+            for(int k= loopcount; k < 4; k++)
+            {
+            <div class="col-sm"></div>
+            }
+            break;
+            }
         </div>
+                
+            }
+
+            }
+
     </div>
+     
 
 </body>
 </html>

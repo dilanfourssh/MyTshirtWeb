@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Administrator";
+}
+
+<h2>@Session["email"]</h2>
+@using (Html.BeginForm())
+{
+    <select name="category">
+        <option value="web">website</option>
+        <option value="web">flutter</option>
+        <option value="web">android</option>
+    </select>
+    <p>imageone</p>
+    <input type="file" name="imgname1"> <br />
+    <p>imagtwo </p>
+    <input type="file" name="imgname2"> <br />
+    <p>imagthree</p>
+    <input type="file" name="imgname3"> <br />
+    <p> originalzip</p>
+    <input type="file" name="zipfilename"> <br />
+    <p>titleimage</p>
+    <input type="text" name="tittle"> <br />
+    <p>small description</p>
+    <textarea rows="10" name="smallDescription"></textarea><br />
+    <p> large description</p>
+    <textarea rows="10" name="largeDescription"></textarea> <br />
+   
+
+    <input type="hidden" name="sessionid" value="@Session["id"]" />
+    <input type="submit" />
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function submitform(thiss) {
+        $('form').submit();
+    }
+</script>

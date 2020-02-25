@@ -29,6 +29,8 @@ namespace Tshirt.Context
         public DbSet<Web> webs { get; set; }
         public DbSet<Replyoffer> replyoffers { get; set; }
         public DbSet<bootstrap_type> bootstrap_Types { get; set; }
+        public DbSet<Register> registers { get; set; }
+        public DbSet<addproject> addprojects { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

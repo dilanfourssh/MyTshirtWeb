@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Header.cshtml";
+
+}
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-md col-sm">
+            <img src="~/img/orderimage/web.png" style="width:100%" />
+        </div>
+        <div class="col-sm">
+            <div class="row" style="margin-bottom:30px;">
+                <div class="col-sm" style="border-radius: 10px 10px 10px 10px; padding:20px 20px 20px 20px; background-color:#f8f9fa; color:green">
+                    <h4 style="text-align:center"> <i class="fas fa-battery-half"></i> Register </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Email address </label>
+                            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Confirm Password</label>
+                            <input type="password" class="form-control" name="password2" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success" style="width:100%; margin-bottom:10px">Register</button>
+                    }
+                    <a href='@Url.Action("Login", "Home")'><button type="button" class="btn btn-outline-danger" style="width:100%">Go To Sign In Page</button></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function submitform(thiss) {
+        $('form').submit();
+    }
+</script>
