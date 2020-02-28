@@ -18,19 +18,10 @@ namespace Tshirt.Context
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<tshirtContext, Configuration>());
         }
-        public DbSet<ColingOff> ColingOffs { get; set; }
-        public DbSet<Login> logins { get; set; }
-        public DbSet<Offer> offers { get; set; }
-        public DbSet<TshirtImage> tshirtImages { get; set; }
-        public DbSet<Tshirtorder> tshirtorders { get; set; }
-        public DbSet<CompanyRegister> companyRegisters { get; set; }
-        public DbSet<BestProduct> bestProducts { get; set; }
-        public DbSet<RequestOrder> requestOrders { get; set; }
-        public DbSet<Web> webs { get; set; }
-        public DbSet<Replyoffer> replyoffers { get; set; }
         public DbSet<bootstrap_type> bootstrap_Types { get; set; }
         public DbSet<Register> registers { get; set; }
         public DbSet<addproject> addprojects { get; set; }
+        public DbSet<Downloahistory> downloahistories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

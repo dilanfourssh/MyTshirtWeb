@@ -6,7 +6,7 @@
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="364407944273-23b5bjjnao8ud8oc72ujf9shm8qrc63a.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="364407944273-uie62ghggd3ddj6u6k2u6m8mt2q50pon.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/api.js"></script>
 
 </head>
@@ -38,29 +38,23 @@
                         <button type="submit" class="btn btn-outline-success" style="width:100%; margin-bottom:10px">Login</button>
                     }
                     <a href='@Url.Action("Register", "Home")'><button type="button" class="btn btn-outline-danger" style="width:100%">Go To Register Page</button></a>
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px">
+                <div class="col-sm">
+                    <div class="g-signin2" data-onsuccess="onSignIn" style="width:100%"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    function start() {
-        gapi.load('auth2', function () {
-            auth2 = gapi.auth2.init({
-                client_id: '364407944273-23b5bjjnao8ud8oc72ujf9shm8qrc63a.apps.googleusercontent.com',
-                // Scopes to request in addition to 'profile' and 'email'
-                //scope: 'additional_scope'
-            });
-        });
-    }
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        alert('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

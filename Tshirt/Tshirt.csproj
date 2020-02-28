@@ -164,19 +164,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\addproject.cs" />
-    <Compile Include="Models\BestProduct.cs" />
     <Compile Include="Models\bootstrap type.cs" />
-    <Compile Include="Models\ColingOff.cs" />
-    <Compile Include="Models\CompanyRegister.cs" />
+    <Compile Include="Models\Downloahistory.cs" />
     <Compile Include="Models\keyAttribute.cs" />
-    <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Offer.cs" />
     <Compile Include="Models\Register.cs" />
-    <Compile Include="Models\Replyoffer.cs" />
-    <Compile Include="Models\RequestOrder.cs" />
-    <Compile Include="Models\TshirtImage.cs" />
-    <Compile Include="Models\Tshirtorder.cs" />
-    <Compile Include="Models\Web.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -236,6 +227,7 @@
     <Content Include="Views\Home\Bootstrap.cshtml" />
     <Content Include="Views\Home\Flutter.cshtml" />
     <Content Include="Views\Home\Administrator.cshtml" />
+    <Content Include="Views\Home\ThankYou.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

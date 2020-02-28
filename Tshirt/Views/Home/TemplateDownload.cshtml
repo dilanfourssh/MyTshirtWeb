@@ -60,7 +60,12 @@
                         <p style="font-family:Courier New; text-align:justify">
                             @mydownloadfile.largeDescription
                         </p>
-                        <button type="button" class="btn btn-outline-success" style="width:100%">Download Template</button>
+                        @using (Html.BeginForm())
+                        {
+                            <input type="hidden" name="id" value="@mydownloadfile.id" />
+                            <input type="hidden" name="zipfilename" value="@mydownloadfile.zipfilename" />
+                            <button type="submit" class="btn btn-outline-success" style="width:100%">Download Template</button>
+                        }
                     </div>
                 </div>
             </div>
@@ -69,9 +74,15 @@
         </div>
     </div>
 
-        
-        
-   
+
+
+
 
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function submitform(thiss) {
+        $('form').submit();
+    }
+</script>

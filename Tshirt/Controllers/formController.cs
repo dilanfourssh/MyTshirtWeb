@@ -17,7 +17,7 @@ namespace Tshirt.Controllers
         // GET: bootstrapresposiveform
         public ActionResult Index()
         {
-            var tshirtDetails = db.bestProducts.FirstOrDefault();
+            
             return View();
         }
        
