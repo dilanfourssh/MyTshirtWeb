@@ -197,6 +197,9 @@
     <Content Include="js\navbar.js" />
     <Content Include="js\signup.js" />
     <Content Include="js\zoomjava.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -228,6 +231,7 @@
     <Content Include="Views\Home\Flutter.cshtml" />
     <Content Include="Views\Home\Administrator.cshtml" />
     <Content Include="Views\Home\ThankYou.cshtml" />
+    <Content Include="Scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,7 +21,7 @@ using System.Drawing.Imaging;
 using iTextSharp.text.pdf;
 using PdfiumViewer;
 using iTextSharp.text.pdf.parser;
-
+using System.Data.Entity;
 
 namespace Tshirt.Controllers
 {
@@ -113,7 +113,7 @@ namespace Tshirt.Controllers
         }
         public ActionResult TemplateDownload(int tempplateid)
         {
-            ViewBag.templatedownload = db.addprojects.Where(d => d.id == tempplateid).FirstOrDefault();
+            ViewBag.templatedownload = db.addprojects.Where(d => d.id == tempplateid).FirstOrDefault();  
             return View();
         }
         [HttpPost]
@@ -121,13 +121,14 @@ namespace Tshirt.Controllers
         {
             Session["templateidsend"] = adds.id;
             int downing = Convert.ToInt32(Session["templateidsend"]);
+
             if (Session["email"] != null)
             {
                 string fileName = adds.zipfilename;// Replace Your Filename with your required filename
                 Response.ContentType = "application/octet-stream";
                 Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
                 Response.TransmitFile(Server.MapPath("~/img/orderimage/sourcefile/" + fileName));//Place "YourFolder" your server folder Here
-                Response.End();
+                
 
                 Downloahistory download = new Downloahistory();
                 download.addProjectId = downing;
@@ -136,8 +137,14 @@ namespace Tshirt.Controllers
                 db.downloahistories.Add(download);
                 db.SaveChanges();
 
-
-                return View();
+                var downloadupdate = db.addprojects.Where(d => d.id == downing).FirstOrDefault();
+                downloadupdate.download = downloadupdate.download + 1;
+                db.addprojects.Attach(downloadupdate);
+                db.Entry(downloadupdate).State = EntityState.Modified;
+                db.SaveChanges();
+                Response.End();
+                return RedirectToAction("ThankYou", "Home");
+                
             }
             else
             {
@@ -146,7 +153,8 @@ namespace Tshirt.Controllers
             }
         }
         public ActionResult ThankYou()
-        {            
+        {
+            
             return View();
         }
         public ActionResult Login()
@@ -230,7 +238,8 @@ namespace Tshirt.Controllers
         {
             int ids =Convert.ToInt32( Session["id"]);
             var mydbs = db.registers.Where(d => d.Id == ids).FirstOrDefault();
-            if(mydbs.logtype == 1) { 
+            ViewBag.myproject = db.addprojects.Where(d => d.sessionid == ids).ToList();
+            if (mydbs.logtype == 1) { 
                 return View();
             }
             else
@@ -238,49 +247,59 @@ namespace Tshirt.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+       
         [HttpPost]
-        public ActionResult Administrator(string category, HttpPostedFileBase imgname1, HttpPostedFileBase imgname2, HttpPostedFileBase imgname3, HttpPostedFileBase zipfilename,string tittle,string smallDescription, string largeDescription)
+        public ActionResult Administrator(string category, HttpPostedFileBase imgname1, HttpPostedFileBase imgname2, HttpPostedFileBase imgname3, HttpPostedFileBase zipfilename,string tittle,string smallDescription, string largeDescription,int? id)
         {
-            
-            string path = Server.MapPath("~/img/orderimage/");
-            if (!Directory.Exists(path))
+            if (tittle == null && id != null)
             {
-                Directory.CreateDirectory(path);
+                var objecttrace = db.addprojects.Where(d => d.id == id).FirstOrDefault();
+                db.addprojects.Remove(objecttrace);
+                db.SaveChanges();
+                return RedirectToAction("Administrator", "Home");
             }
-            string path1 = Server.MapPath("~/img/orderimage/sourcefile/");
-            if (!Directory.Exists(path1))
+            else
             {
-                Directory.CreateDirectory(path1);
+                string path = Server.MapPath("~/img/orderimage/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                string path1 = Server.MapPath("~/img/orderimage/sourcefile/");
+                if (!Directory.Exists(path1))
+                {
+                    Directory.CreateDirectory(path1);
+                }
+
+                int idmy = Convert.ToInt32(Session["id"]);
+
+                string count = db.addprojects.Count().ToString();
+                string imgnamesone = Session["email"].ToString() + "1" + count + ".jpg";
+                string imgnamestwo = Session["email"].ToString() + "2" + count + ".jpg";
+                string imgnamesthree = Session["email"].ToString() + "3" + count + ".jpg";
+                string zipimagename = Session["email"].ToString() + "originalimage" + count + ".zip";
+
+                imgname1.SaveAs(path + System.IO.Path.GetFileName(imgnamesone));
+                imgname2.SaveAs(path + System.IO.Path.GetFileName(imgnamestwo));
+                imgname3.SaveAs(path + System.IO.Path.GetFileName(imgnamesthree));
+                zipfilename.SaveAs(path1 + System.IO.Path.GetFileName(zipimagename));
+
+                addproject projectmyupload = new addproject();
+                projectmyupload.imgname1 = imgnamesone;
+                projectmyupload.imgname2 = imgnamestwo;
+                projectmyupload.imgname3 = imgnamesthree;
+                projectmyupload.zipfilename = zipimagename;
+                projectmyupload.category = category;
+                projectmyupload.folderpath = "";
+                projectmyupload.sessionid = idmy;
+                projectmyupload.tittle = tittle;
+                projectmyupload.smallDescription = smallDescription;
+                projectmyupload.largeDescription = largeDescription;
+
+                db.addprojects.Add(projectmyupload);
+                db.SaveChanges();
+                return View();
             }
-
-            int idmy = Convert.ToInt32(Session["id"]);
-           
-            string count = db.addprojects.Count().ToString();
-            string imgnamesone = Session["email"].ToString() + "1"+count+".jpg";
-            string imgnamestwo = Session["email"].ToString() + "2" + count + ".jpg";
-            string imgnamesthree = Session["email"].ToString() + "3" + count + ".jpg";
-            string zipimagename = Session["email"].ToString() + "originalimage" + count + ".zip";
-           
-            imgname1.SaveAs(path + System.IO.Path.GetFileName(imgnamesone));
-            imgname2.SaveAs(path + System.IO.Path.GetFileName(imgnamestwo));
-            imgname3.SaveAs(path + System.IO.Path.GetFileName(imgnamesthree));
-            zipfilename.SaveAs(path1 + System.IO.Path.GetFileName(zipimagename));
-
-            addproject projectmyupload = new addproject();
-            projectmyupload.imgname1 = imgnamesone;
-            projectmyupload.imgname2 = imgnamestwo;
-            projectmyupload.imgname3 = imgnamesthree;
-            projectmyupload.zipfilename = zipimagename;
-            projectmyupload.category = category;
-            projectmyupload.folderpath = "";
-            projectmyupload.sessionid = idmy;
-            projectmyupload.tittle = tittle;
-            projectmyupload.smallDescription = smallDescription;
-            projectmyupload.largeDescription = largeDescription;
-
-            db.addprojects.Add(projectmyupload);
-            db.SaveChanges();
-            return View();
         }
 
         //my second project**********************************************************************************************************************************************************************************************

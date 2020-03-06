@@ -1,11 +1,11 @@
 ﻿
 @{
     Layout = "~/Views/Shared/Header.cshtml";
+    var project = ViewBag.myproject;
 }
 
 
-@using (Html.BeginForm("Administrator", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+
 <div class="container">
     <div class="row">
         <div class="col-sm" style="margin-bottom:20px; padding:20px 20px 20px 20px; background-color:antiquewhite; border-radius:20px;">
@@ -19,73 +19,89 @@
         </div>
     </div>
     <div class="row">
+        @using (Html.BeginForm("Administrator", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div col-sm>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Select Category</label>
+                    </div>
+                    <select class="custom-select" name="category">
+                        <option value="web">website</option>
+                        <option value="flutter">flutter</option>
+                        <option value="android">android</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Image one upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="imgname1"> <br />
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Image Two upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="imgname2"> <br />
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Image Three upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="imgname3"> <br />
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Original zip Download</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="zipfilename"> <br />
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Image Title</label>
+                    <input type="text" class="form-control" name="tittle">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Small Description</label>
+                    <textarea rows="5" class="form-control" name="smallDescription"></textarea><br />
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Small Description</label>
+                    <textarea rows="10" class="form-control" name="largeDescription"></textarea> <br />
+                </div>
 
+                <input type="hidden" name="sessionid" value="@Session["id"]" />
+                <button type="submit" class="btn btn-danger"> Send Data </button>
+            </div>
+        }
         <div col-sm>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Select Category</label>
-                </div>
-                <select class="custom-select" name="category">
-                    <option value="web">website</option>
-                    <option value="flutter">flutter</option>
-                    <option value="android">android</option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Image one upload</span>
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="imgname1"> <br />
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Image Two upload</span>
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="imgname2"> <br />
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Image Three upload</span>
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="imgname3"> <br />
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Original zip Download</span>
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" name="zipfilename"> <br />
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Image Title</label>
-                <input type="text" class="form-control" name="tittle">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Small Description</label>
-                <textarea rows="5" class="form-control" name="smallDescription"></textarea><br />
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Small Description</label>
-                <textarea rows="10" class="form-control" name="largeDescription"></textarea> <br />
-            </div>
+            @using (Html.BeginForm())
+            {
 
-            <input type="hidden" name="sessionid" value="@Session["id"]" />
-            <button type="submit" class="btn btn-danger"> Send Data </button>
-        </div>
-        <div col-sm>
+                foreach (var a in project)
+                {
 
+                    if (a != null)
+                    {
+                        <h4>@a.smallDescription</h4>
+                        <input type="hidden" name="id" value="@a.id" />
+                        <button type="submit" class="btn btn-danger"> delete </button>
+                    }
+                }
+
+            }
         </div>
         <div col-sm>
 
@@ -93,7 +109,7 @@
     </div>
     </div>
     
-}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
     function submitform(thiss) {

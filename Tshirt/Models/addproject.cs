@@ -18,5 +18,6 @@ namespace Tshirt.Models
         public string tittle { get; set; }
         public string smallDescription { get; set; }
         public string largeDescription { get; set; }
+        public int download { get; set; }
     }
 }
