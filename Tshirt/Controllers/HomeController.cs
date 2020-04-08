@@ -27,7 +27,7 @@ namespace Tshirt.Controllers
 {
     public class HomeController : Controller
     {
-
+        
         private tshirtContext db = new tshirtContext();
         private object postedFile;
 
@@ -45,6 +45,15 @@ namespace Tshirt.Controllers
             var tshirtDetails = db.addprojects.ToList();
             ViewBag.tshirtdetailspasstheview = tshirtDetails;
             ViewBag.listcount = tshirtDetails.Count();
+            //return View();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(Models.WebRequest web)
+        {
+            db.webRequests.Add(web);
+            db.SaveChanges();
             //return View();
             return View();
         }
@@ -298,10 +307,25 @@ namespace Tshirt.Controllers
 
                 db.addprojects.Add(projectmyupload);
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("Administrator", "Home");
             }
         }
-
+        public ActionResult TermsAndCondition()
+        {
+            return View();
+        }
+        public ActionResult aboutus()
+        {
+            return View();
+        }
+        public ActionResult contactus()
+        {
+            return View();
+        }
+        public ActionResult PrivacyPolicy()
+        {
+            return View();
+        }
         //my second project**********************************************************************************************************************************************************************************************
         
     }

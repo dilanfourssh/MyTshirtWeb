@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:40px">
         <a class="navbar-brand" href='@Url.Action("Index", "Home")'>
         <h4 style="color:green">
-             Colurslib | Primium
+             Colorslib | Premium
         </h4>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,15 +50,18 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Privacy Policy</a>
-                </li> 
-                @{
-                    if (Session["logtype"] == "1") {
-                <li class="nav-item">
-                    <a class="nav-link " href="#">Privacy Policy</a>
+                    <a class="nav-link " href='@Url.Action("aboutus", "Home")'>About Us</a>
                 </li>
-                    }
-                 }
+                <li class="nav-item">
+                    <a class="nav-link " href='@Url.Action("contactus", "Home")'>Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href='@Url.Action("TermsAndCondition", "Home")'>Terms & Condition</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href='@Url.Action("PrivacyPolicy", "Home")'>Privacy Policy</a>
+                </li>
+
             </ul>
             @if (Session["email"] == null)
             {
@@ -93,7 +96,9 @@
                     <div class="col-sm" style="padding:40px 40px 40px 40px;">
                         <h2 style="color:green">COLORSLIB | worldwide</h2>
                         <p> Main Head Office: Sri Lanka </p>
-                        
+                        <p> Main Head Office: Sri Lanka </p>
+                        <p> Main Head Office: Sri Lanka </p>
+
                     </div>
                     <div class="col-sm" style="padding:40px 40px 40px 40px;">
                         <h5 style="color:green">OUR SERVICE</h5>

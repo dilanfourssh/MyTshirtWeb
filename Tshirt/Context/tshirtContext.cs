@@ -22,6 +22,7 @@ namespace Tshirt.Context
         public DbSet<Register> registers { get; set; }
         public DbSet<addproject> addprojects { get; set; }
         public DbSet<Downloahistory> downloahistories { get; set; }
+        public DbSet<WebRequest> webRequests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
